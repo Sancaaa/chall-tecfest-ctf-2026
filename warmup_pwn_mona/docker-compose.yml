@@ -7,7 +7,7 @@ services:
       # host port ikut skema 5 digit K-CC-W-I: kategori 4 (Pwn), slot 01, digit-4=1
       # (warm-up), instance 1 -> 40111. Container-internal (10110) tetap, sesuai
       # socat di Dockerfile -- lihat WebTecFest/deploy/warmup-setup/README.md bagian 1
-      - "127.0.0.1:40111:40111"
+      - "100.105.142.39:40111:10110"
     volumes:
       - ./flag.txt:/home/mona_pwn/flag.txt:ro
     cap_drop:

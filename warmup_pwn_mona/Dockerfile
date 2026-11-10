@@ -25,4 +25,4 @@ USER mona_pwn
 # JANGAN pakai opsi "pty" di socat -- payload overflow ini raw bytes ('A' * N),
 # pty bisa memfilter/mengubah byte lewat line discipline terminal.
 CMD ["sh", "-c", "ulimit -c 0; exec socat TCP-LISTEN:10110,reuseaddr,fork 'EXEC:/usr/bin/timeout -k 5 60 /home/mona_pwn/mona'"]
-EXPOSE 40111
+EXPOSE 10110

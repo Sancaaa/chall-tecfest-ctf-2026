@@ -7,7 +7,7 @@ services:
       # host port ikut skema 5 digit K-CC-W-I: kategori 5 (Web), slot 01, digit-4=1
       # (warm-up), instance 1 -> 50111. Container-internal (80, nginx default) tetap
       # -- lihat WebTecFest/deploy/warmup-setup/README.md bagian 1
-      - "127.0.0.1:50111:80"
+      - "100.105.142.39:50111:80"
     cap_drop:
       - ALL
     cap_add:
