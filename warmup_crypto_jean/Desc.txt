@@ -1,0 +1,5 @@
+Jean dancok sangat emosi sama klee yang suka nge duar duar ikan di danau, jean danco sering kali menulis isi hatinya di dalam buku hariannya. tapi buku itu terenkripsi. kira-kira gimana ya cara kita tau apa yang jean danco pikirin?
+
+Download `enc.py` (lihat cara & key enkripsinya) dan `output.enc` (hasil enkripsi flag), lalu balikkan.
+
+Flag format: TecFest26{...}

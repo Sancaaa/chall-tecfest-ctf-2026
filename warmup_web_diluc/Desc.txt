@@ -1,0 +1,5 @@
+diluc ku adalah dipies paling sakit
+
+`http://chall.tecfest.site:50111`
+
+Flag format: TecFest26{...}

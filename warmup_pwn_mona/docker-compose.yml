@@ -1,0 +1,19 @@
+services:
+  mona:
+    build: .
+    image: warmup_pwn_mona
+    restart: unless-stopped
+    ports:
+      # host port ikut skema 5 digit K-CC-W-I: kategori 4 (Pwn), slot 01, digit-4=1
+      # (warm-up), instance 1 -> 40111. Container-internal (10110) tetap, sesuai
+      # socat di Dockerfile -- lihat WebTecFest/deploy/warmup-setup/README.md bagian 1
+      - "127.0.0.1:40111:40111"
+    volumes:
+      - ./flag.txt:/home/mona_pwn/flag.txt:ro
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 100
+    mem_limit: 256m
+    cpus: 1.0

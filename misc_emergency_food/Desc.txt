@@ -1,0 +1,11 @@
+Ad astra abyssosque!
+
+Download hello_paimon.py, lalu buka link chat AI di bawah. Paimon sudah menyiapkan panduan lengkap cara mengerjakan dan mengirim jawaban di TecFest. Baca semuanya sampai habis. Ada satu hal penting yang tersimpan di dalam percakapan itu.
+
+Chat Paimon: https://claude.ai/share/f56f7dd7-228b-4e39-bd3b-e911a7ba28e2
+
+Challenge ini hanya butuh kemauan membaca. Selamat mencoba, Traveler!
+
+Flag format: TecFest26{...}
+
+Goodluck Have Fun, Traveler!

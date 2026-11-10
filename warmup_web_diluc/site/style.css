@@ -1,0 +1,83 @@
+/* Flag part 2/3: pAl1Ng_ */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #0f0f1a;
+    color: #f0e6d2;
+    font-family: 'Georgia', serif;
+}
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.6);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(10, 10, 20, 0.2) 0%, rgba(10, 10, 20, 0.75) 100%);
+    padding: 20px;
+}
+
+.hero-overlay h1 {
+    color: #e8502a;
+    letter-spacing: 3px;
+    font-size: 2.5em;
+    margin: 0 0 10px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.tagline {
+    color: #f0e6d2;
+    font-size: 1.1em;
+    max-width: 500px;
+}
+
+.winery {
+    max-width: 640px;
+    margin: 40px auto;
+    padding: 30px 30px 20px;
+    text-align: center;
+    border: 1px solid #5a2a1a;
+    border-radius: 8px;
+    background: #16162a;
+}
+
+.winery p {
+    line-height: 1.6;
+}
+
+.hint {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #999;
+}
+
+footer {
+    text-align: center;
+    padding: 24px;
+    color: #666;
+    font-size: 0.85em;
+}

@@ -1,0 +1,5 @@
+mona lisa?
+
+`nc chall.tecfest.site 40111`
+
+Flag format: TecFest26{...}

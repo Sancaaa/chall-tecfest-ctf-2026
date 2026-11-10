@@ -1,0 +1,25 @@
+services:
+  diluc:
+    build: .
+    image: warmup_web_diluc
+    restart: unless-stopped
+    ports:
+      # host port ikut skema 5 digit K-CC-W-I: kategori 5 (Web), slot 01, digit-4=1
+      # (warm-up), instance 1 -> 50111. Container-internal (80, nginx default) tetap
+      # -- lihat WebTecFest/deploy/warmup-setup/README.md bagian 1
+      - "127.0.0.1:50111:80"
+    cap_drop:
+      - ALL
+    cap_add:
+      # minimal yang dibutuhkan entrypoint nginx:alpine resmi -- chown cache
+      # dir ke user nginx (uid 101) lalu drop privilege ke user itu sebelum
+      # serve traffic. Tanpa ini nginx gagal start kalau cap_drop: ALL
+      # (chown("/var/cache/nginx/client_temp") -> Operation not permitted).
+      - CHOWN
+      - SETUID
+      - SETGID
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 50
+    mem_limit: 128m
+    cpus: 0.5

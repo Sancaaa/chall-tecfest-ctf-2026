@@ -1,0 +1,24 @@
+# mona (warm-up)
+
+## Remote
+
+Direct connection: `nc <host> 40111` (host-side port ikut skema 5 digit — lihat
+`WebTecFest/deploy/warmup-setup/README.md` bagian 4; port internal container tetap `10110`)
+
+## Attachment peserta
+
+Upload `dist/mona_attachment.zip` sebagai Files di CTFd (isi: binary `mona` +
+source `mona.c`, dibundle sengaja supaya peserta bisa langsung baca behavior-nya
+tanpa reverse -- ini warm-up). Peserta perlu `chmod +x mona` setelah unzip (exec bit
+tidak terbawa lewat zip Windows), tapi sebenarnya tidak wajib menjalankan binary-nya
+sama sekali, cukup `nc` ke service dan spam input.
+
+## Local run
+
+```
+docker compose up -d --build
+nc 127.0.0.1 40111
+```
+
+Lalu ketik apa saja lebih dari ~72 karakter dan tekan Enter (atau spam `A` x200) —
+program akan crash dan server langsung membalas flag.
