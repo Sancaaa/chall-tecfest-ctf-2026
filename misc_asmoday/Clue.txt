@@ -1,0 +1,15 @@
+Clue1
+https://www.youtube.com/watch?v=kRrK4VJBf2s
+
+Clue2
+1 cube = 1 char
+
+clue3
+kalo belum sadar, itu json, harusnya sih sadar ya
+--------------------------------------
+
+Clue4
+base4, 4 center
+
+clue5
+rotation of center pieces

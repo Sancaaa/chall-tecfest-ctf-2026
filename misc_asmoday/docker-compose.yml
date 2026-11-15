@@ -1,0 +1,26 @@
+# Instance bersama untuk semua tim (tanpa state). Hari-H: Homelab 8GB (lihat
+# WebTecFest/deploy/competition-setup/README.md bagian 1 dan 3), port host 60301.
+# Buat ./flag.txt dulu (berisi flag asli, satu baris) sebelum `docker compose up` —
+# file ini di-mount read-only, tidak pernah ikut masuk ke image maupun git.
+#
+# BIND_IP: di Homelab isi dengan IP Tailscale-nya (100.105.142.39) lewat .env atau
+# environment, supaya port hanya bisa diakses lewat tailnet. Default 127.0.0.1 untuk
+# tes lokal, jadi tidak terbuka ke jaringan mana pun.
+services:
+  asmoday:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "${BIND_IP:-127.0.0.1}:60301:13337"
+    environment:
+      TIMEOUT_SECONDS: "20"
+      MAX_CONN_PER_IP: "10"
+      MAX_CONN_TOTAL: "200"
+    volumes:
+      - ./flag.txt:/app/flag.txt:ro
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    pids_limit: 300
+    mem_limit: 256m
+    cpus: 0.5
