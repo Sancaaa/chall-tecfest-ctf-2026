@@ -1,0 +1,7 @@
+![aha.jpg]({{FILE:aha.jpg}})
+
+The release team says the `aha` package is clean and ready to publish. An audit, however, found one delivery that never made it into the final report.
+
+Dig through the evidence and recover the receipt for that delivery.
+
+Download [aha-image.tar]({{FILE:aha-image.tar}}).

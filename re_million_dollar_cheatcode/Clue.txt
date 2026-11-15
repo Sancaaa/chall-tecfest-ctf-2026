@@ -1,0 +1,2 @@
+Hint 1: Binary game ini dibangun menggunakan Godot Engine — resource dan script di dalamnya masih dapat diekstrak untuk dianalisis.
+Hint 2: Jangan buang waktu grinding skor manual; cari script pengatur skor target dan cara mengaktifkan Debug Mode lewat kombinasi 10 input.

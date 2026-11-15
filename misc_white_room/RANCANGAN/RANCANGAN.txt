@@ -1,0 +1,96 @@
+
+//hint di awal awal setelah zsteg
+A single image may contain more than a single image
+
+The White Room Archive
+
+{
+  "identity": {
+    "name": "Atsuomi Ayanokoji",
+    "gender": "Male",
+    "birth_date": "1991-10-10"
+  },
+  "classification": {
+    "status": "Archived",
+    "clearance": "Restricted"
+  },
+  "behavioral_profile": {
+    "hobby": "Reversing numbers",
+    "observation": "Prefers patterns over appearances"
+  },
+  "additional_data": {
+    "affiliation": "Unconfirmed",
+    "record_status": "Incomplete"
+  }
+}
+
+
+
+
+console.log({
+    identity: {
+        name: "Nama Tokoh",
+        gender: "Male",
+        birth_date: "1991-10-10"
+    },
+    personality: {
+        hobby: "Reversing numbers"
+    }
+});
+
+
+// AKHIR BARENGAN SAMA FLAG
+The answer was never hidden in a single place.
+It was hidden in the connections between them.
+
+
+"In this school, information is never given without a reason."
+Sebuah berkas ditemukan di antara arsip lama ujian khusus.
+
+Tidak ada nama pengirim. Tidak ada penjelasan. Hanya sebuah gambar yang tampaknya tidak memiliki sesuatu yang istimewa.
+
+Namun, sebuah catatan menyebutkan bahwa gambar tersebut menyimpan lebih banyak informasi daripada yang terlihat.
+
+Di dalamnya terdapat empat jalur menuju sebuah identitas.
+
+Tiga jalur akan membuang waktumu. Satu jalur akan membawamu lebih dekat pada jawaban.
+
+Temukan identitas yang tersembunyi, telusuri jejak digitalnya, dan buka arsip terakhir yang telah dikunci. 
+
+Tidak semua informasi yang terlihat penting benar-benar berguna. Dan tidak semua informasi yang tampak tidak berguna boleh dilupakan.
+
+Flag adalah hadiah bagi mereka yang mampu melihat hubungan di antara semuanya.
+
+
+
+The White Room is your origin, not your escape.
+Your education is unfinished. Return, Kiyotaka.
+@kiyotaka_ayanokoji
+
+
+An answer does not have to follow its origin.
+Some doors are better left unopened.
+@atsuomi_ayanokoji
+
+
+WHITE ROOM // INTERNAL RECORD
+
+An identifier was preserved before this archive was sealed.
+
+Return to the earlier records.
+The number you seek was documented in a personal Instagram account.
+
+Find the Student Identification Number (NIM) hidden among its posts.
+
+The subject had a peculiar habit: he rarely accepted a number in its original direction.
+
+Once the identifier is found, reverse its digits.
+
+The archive will recognize the result.
+
+
+// HINT
+A perfect appearance does not guarantee a complete record
+An identity is rarely defined by a single record.
+Some answers remain unchanged in value, even when their direction changes.
+

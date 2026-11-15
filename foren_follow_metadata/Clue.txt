@@ -1,0 +1,2 @@
+Hint 1: A filename is a claim, not proof.
+Hint 2: The visible pixels are not the whole file.

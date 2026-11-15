@@ -1,0 +1,9 @@
+![coverFollowMetadata.jpeg]({{FILE:coverFollowMetadata.jpeg}})
+
+An image recovered from an unknown device was catalogued as `evidence.png`.
+
+The file appears ordinary at first glance, but its extension and visible pixels may not tell the whole story. Examine the evidence carefully and recover the hidden flag.
+
+**Flag format:** `TecFest26{...}`
+
+Download [evidence.png]({{FILE:evidence.png}}).

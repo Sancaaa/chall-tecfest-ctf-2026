@@ -1,0 +1,9 @@
+![coverOnion.jpeg]({{FILE:coverOnion.jpeg}})
+
+Seorang admin paranoid menyembunyikan flag-nya dengan membungkusnya berlapis-lapis, seperti bawang. Ia yakin tidak akan ada yang sabar mengupasnya satu per satu.
+
+Buktikan dia salah.
+
+Flag format: `TecFest26{...}`
+
+Download [chall.txt]({{FILE:chall.txt}}).

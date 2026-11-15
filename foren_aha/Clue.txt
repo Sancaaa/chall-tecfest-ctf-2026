@@ -1,0 +1,5 @@
+Hint 1: Layers tell a story, but only in the order the manifest says.
+Hint 2: Deleted doesn't always mean gone, and hidden doesn't always mean deleted.
+Hint 3: Finishing a job and starting it don't always use the same state.
+Hint 4: Same name, different content: trust the hashes the log recorded.
+Hint 5: The program that wrote the receipt ships inside the image too.

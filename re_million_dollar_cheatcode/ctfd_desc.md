@@ -1,0 +1,11 @@
+![coverMillionDollar.jpeg]({{FILE:coverMillionDollar.jpeg}})
+
+One million points. That's all it takes.
+
+Welcome to a seemingly ordinary side-scrolling shooter. Your mission is simple: survive, eliminate enemies, rack up points, and reach the glorious **1,000,000 score milestone**.
+
+Sounds easy, right? Well, not quite. Rumor has it that someone left a hidden mechanism inside the game — a mysterious debug mode, perhaps? Your weapons won't be enough this time. Maybe the real weapon is your ability to look beyond the game itself.
+
+**Flag Format:** `TecFest26{...}`
+
+Download [million_dollar_cheatcode.zip]({{FILE:million_dollar_cheatcode.zip}}).

@@ -1,0 +1,13 @@
+Seorang kolektor jejak digital menyimpan catatan perjalanannya di internet. Ia tidak pernah menyebut namanya sendiri. Satu-satunya petunjuk yang ia tinggalkan adalah sebuah akun Instagram milik aktor yang dikenal lewat peran ikoniknya: **`@tomholland2013`**.
+
+Mulailah dari akun itu. Pelajari siapa dia dan peran apa yang membuatnya terkenal. Dari sana, cari tahu di mana sang kolektor menyimpan catatannya. Gali apa yang pernah ia tulis lalu hapus, dan cari tahu di lokasi/jalan atau area mana ia berdiri saat memotret tujuan akhirnya.
+
+Susun tiga potongan yang kamu temukan menjadi satu flag.
+
+**Format flag:** `TecFest26{kata_kode_namalokasi}`
+- **`kata`**: kata kode (*codename*) yang ditemukan di catatan.
+- **`kode`**: kode tiket angka yang ditemukan di catatan.
+- **`namalokasi`**: nama jalan atau area taman tempat fotografer berdiri saat mengambil foto (huruf kecil semua, tanpa spasi, tanpa tanda aksen/diakritik, gunakan underscore `_`).
+- Contoh format penulisan: `rue_de_rivoli` (bukan `Rue de Rivoli`) atau `quai_branly` (bukan `Quai Branly`).
+
+*Catatan: Akun Instagram tersebut hanya titik awal. Kamu tidak perlu follow, DM, atau berinteraksi dengannya dalam bentuk apa pun. Semua informasi yang dibutuhkan bersifat publik. Akun GitHub yang terlibat adalah akun fiktif buatan panitia dan tidak berafiliasi dengan tokoh mana pun.*

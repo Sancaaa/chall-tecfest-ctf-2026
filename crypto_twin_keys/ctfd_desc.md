@@ -1,0 +1,10 @@
+![coverTwinKeys.jpeg]({{FILE:coverTwinKeys.jpeg}})
+
+Panitia TecFest26 mengirim pesan rahasia yang sama ke dua cabang panitia.
+Agar "praktis", kedua cabang diberi public key yang berbeda, tetapi dibuat dari modulus yang sama. Toh, private key-nya tetap tersimpan aman, bukan?
+
+Dua ciphertext berhasil kamu sadap dari jaringan. Bisakah kamu membaca pesan yang mereka kirim?
+
+Flag format: `TecFest26{...}`
+
+Download [handout.zip]({{FILE:handout.zip}}).

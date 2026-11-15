@@ -1,0 +1,4 @@
+Hint 1: Cari handle Instagram tadi di GitHub. Ada akun yang namanya mirip.
+Hint 2: Nama repo merujuk julukan karakter ikoniknya, bukan judul filmnya.
+Hint 3: Sesuatu yang dihapus belum tentu hilang. Periksa riwayat commit (termasuk isi dan fotonya).
+Hint 4: Yang ditanyakan adalah nama area/lokasi tempat fotografer berdiri saat mengambil foto, bukan nama gedung di belakangnya.
