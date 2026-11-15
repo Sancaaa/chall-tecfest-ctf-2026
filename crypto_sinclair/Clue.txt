@@ -1,0 +1,16 @@
+Clue1
+Every lock is new, but the locksmith always follows the same recipe.
+
+Clue2
+Not every prime is as rough around the edges as it looks.
+
+Clue3
+Some factoring methods care more about the neighbour of a prime than the prime itself.
+
+--------------------------------------
+
+Clue4
+If normal decryption refuses to work, ask why the inverse doesn’t exist.
+
+Clue5
+When one answer turns into many, let the check choose.

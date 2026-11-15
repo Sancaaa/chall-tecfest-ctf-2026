@@ -1,0 +1,25 @@
+# Instance bersama semua tim (stateless). Deploy di Homelab 8GB — lihat
+# WebTecFest/deploy/competition-setup/README.md bagian 1 & 3.
+# Port skema "K CC W I": Cryptography E (Nahida) = 10501.
+# Di Homelab, bind ke IP Tailscale: set BIND_IP=100.105.142.39 (bukan 0.0.0.0).
+# Secrets dibuat dulu dengan `python gen_secrets.py` lalu di-mount read-only;
+# jangan membakar key/token/flag ke image.
+services:
+  nahida:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "${BIND_IP:-100.105.142.39}:10501:10501"
+    environment:
+      PORT: "10501"
+      MAX_CONN_PER_IP: "6"
+      IO_TIMEOUT: "5"
+      HARD_DEADLINE: "8"
+    volumes:
+      - ./secrets:/app/secrets:ro
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    pids_limit: 200
+    mem_limit: 256m
+    cpus: 0.5

@@ -1,0 +1,22 @@
+name: "Aku Suka Kessoku Band"
+author: "TODO: Nama author"
+description: |
+  Btw aku lagi dengerin lagu Kessoku Band nih, keren banget!
+  Tapi... ada yang aneh sama file musiknya. Kayaknya ada sesuatu yang disembunyiin di sana 👀
+
+  Bisakah kamu temukan apa yang tersembunyi di dalam musik ini?
+
+  > Flag terbagi menjadi **2 bagian**. Gabungkan keduanya untuk mendapatkan flag lengkap!
+
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "TecFest26{1_LQv3_mU51c_4nD_BOCHI!}"
+
+hints:
+  - "Musik itu bisa dilihat, bukan hanya didengar. Coba lihat bentuk gelombangnya secara visual di bagian akhir lagu."
+  - "Metadata sebuah file audio bisa menyimpan lebih dari sekadar judul dan artist. Ada apa di field COMMENT?"
+  - "Sesuatu di metadata tampak seperti teks acak... tapi mungkin bukan acak sama sekali. Coba decode berulang kali."
+
+provide: "./dist"

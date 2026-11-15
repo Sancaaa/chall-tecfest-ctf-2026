@@ -1,0 +1,10 @@
+Clue1
+Classic ret2win
+
+clue2
+Cari fungsi di binary yang isinya cuma print flag. Alamatnya ambil dari nm/objdump.
+https://book.hacktricks.xyz/binary-exploitation/stack-overflow/ret2win
+
+---
+clue3
+Payload offset+alamat teorinya udah bener tapi crash pas di server? gadget `ret` bisa fix stack alignment.

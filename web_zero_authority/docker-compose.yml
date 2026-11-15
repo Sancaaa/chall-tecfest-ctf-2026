@@ -1,0 +1,14 @@
+services:
+  zero-authority:
+    build: .
+    container_name: tecfest-web-zero-authority
+    restart: unless-stopped
+    ports:
+      - "${BIND_IP:-100.105.142.39}:50201:50201"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 128
+    mem_limit: 256m
+    cpus: "0.5"

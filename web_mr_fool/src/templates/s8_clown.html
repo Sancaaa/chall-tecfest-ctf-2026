@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}S8: Clown{% endblock %}
+{% block seq_id %}S8{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="/static/css/sequences/s8_clown.css">{% endblock %}
+
+{% block content %}
+<div class="sequence-page clown-theme">
+  <a href="/" class="back-link">Back to Cabinet</a>
+
+  <div class="stage-curtains"></div>
+  <div class="comedy-mask">🎭</div>
+  <div class="tragedy-mask">🎭</div>
+
+  <div class="sequence-header">
+    <img src="/static/img/seq_clown.svg" class="seq-emblem-img" alt="Clown emblem">
+    <div class="sequence-number">SEQUENCE 8</div>
+    <div class="sequence-name">CLOWN</div>
+  </div>
+
+  <div class="acting-principle">
+    <div class="principle-label">Acting Principle</div>
+    <div class="principle-quote">"Make the system laugh at its own mistakes."</div>
+    <div class="principle-pathway">Pathway of the Clown</div>
+  </div>
+
+  <div class="challenge-container">
+    <h3>The Stage</h3>
+    <p>A Clown makes the audience laugh, but here, the audience is the database. Submit a "joke" and observe how the system responds. Some jokes make it laugh too loudly, revealing more than it should.</p>
+    <p class="clue-text" style="color:var(--text-dim);font-size:0.8rem;margin-top:0.5rem;">
+      Clue: Backstage database schema is visible at <code>/s8/clown/schema</code>.
+    </p>
+
+    <form id="joke-form" onsubmit="submitJoke(event)">
+      <label for="joke">Submit a joke:</label>
+      <input type="text" id="joke" name="joke" placeholder="Your joke..." required style="width:100%;">
+      <button type="submit" style="margin-top:0.75rem;padding:0.7rem 1.5rem;font-family:var(--font-heading);font-size:0.85rem;letter-spacing:0.1em;border:1px solid var(--seq-accent);border-radius:var(--radius);background:rgba(184,134,184,0.08);color:var(--seq-accent);cursor:pointer;">TELL JOKE</button>
+    </form>
+
+    <div id="error-output" class="error-output"></div>
+
+    <form class="solution-form" data-seq-id="S8" style="margin-top:1.5rem;">
+      <label for="answer">Potion Token (extracted from the database's laughter):</label>
+      <input type="text" id="answer" name="answer" placeholder="Enter the Clown's potion token..." required>
+      <button type="submit">DIGEST POTION</button>
+    </form>
+
+    <div class="feedback"></div>
+  </div>
+
+  <div class="digestion-section">
+    <div class="digestion-label">POTION DIGESTION</div>
+    <div class="digestion-bar">
+      <div class="digestion-fill" style="width: 0%"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+async function submitJoke(e) {
+  e.preventDefault();
+  const joke = document.getElementById('joke').value;
+  const output = document.getElementById('error-output');
+
+  try {
+    const resp = await fetch('/s8/clown/joke', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({joke: joke})
+    });
+    const result = await resp.json();
+    output.textContent = JSON.stringify(result, null, 2);
+  } catch (err) {
+    output.textContent = 'Error: ' + err.message;
+  }
+}
+</script>
+{% endblock %}

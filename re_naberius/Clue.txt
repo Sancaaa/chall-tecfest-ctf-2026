@@ -1,0 +1,19 @@
+Clue1
+Strip? gimana caranya balikin?
+
+Clue2
+https://pkg.go.dev/embed
+
+clue3
+https://en.wikipedia.org/wiki/Stack_machine
+
+--------------------------------------
+
+Clue4
+Bytecode didekripsi per instruksi, kuncinya bergulir. Dekode harus urut dari awal
+
+clue5
+Ada handler yang mengubah bytecode di depannya (self-patch). Abaikan = hasil jadi sampah
+
+Clue6
+Separuh kedua baru terbuka kalau separuh pertama benar. Tabel opcode juga ganti di tengah jalan

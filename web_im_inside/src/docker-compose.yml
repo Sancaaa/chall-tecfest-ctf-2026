@@ -1,0 +1,29 @@
+services:
+  relaydesk-web:
+    build: ./relaydesk-web
+    container_name: relaydesk-web
+    restart: unless-stopped
+    ports:
+      - "${PORT:-8082}:3000"
+    networks:
+      - edge
+      - challenge_private
+
+  archive-api:
+    build: ./archive-api
+    container_name: archive-api
+    hostname: archive-api.svc.local
+    restart: unless-stopped
+    environment:
+      - FLAG=TecFest26{wh3n_yhH_b1s4_d1_d4l3m_h4t1_ny4_d14}
+    networks:
+      challenge_private:
+        aliases:
+          - archive-api.svc.local
+
+networks:
+  edge:
+    driver: bridge
+  challenge_private:
+    driver: bridge
+    internal: true

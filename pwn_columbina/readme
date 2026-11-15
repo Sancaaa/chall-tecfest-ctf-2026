@@ -1,0 +1,30 @@
+# columbina
+
+Moon's Reflection menyimpan fragmen-fragmen eksistensi Columbina. Masing-masing
+fragmen baru punya tubuh (nama), belum punya jiwa dan otoritas Trilunar yang utuh --
+jadi dunia belum mengenalinya sebagai Columbina seutuhnya. Satukan ketiganya di
+tempat yang sama supaya dia pulih.
+
+64-bit, C, menu-based heap chall (v2: UAF-write -> tcache poisoning, bukan lagi
+sekadar UAF reuse-by-size -- lihat `NOTES.md`). glibc server: **2.35 (Ubuntu
+22.04)** -- lihat attachment di bawah, WAJIB dipakai untuk development exploit
+(bukan glibc sistem sendiri, lihat alasan di bagian Attachment).
+
+## Remote
+
+Direct connection: `nc <host> 40501`
+
+## Attachment peserta
+
+Upload `dist/columbina_attachment.zip` sebagai Files di CTFd. Isi **wajib** 3 file (bukan cuma binary): `columbina`, `libc.so.6`, `ld-linux-x86-64.so.2` — ketiganya diekstrak langsung dari image Docker yang di-deploy (glibc 2.35, Ubuntu 22.04, digest sama dengan `Dockerfile`), supaya layout heap/tcache yang dihitung peserta di lokal match persis sama server. Ini soal heap exploitation jadi **tidak boleh** cuma kasih binary — glibc beda versi bisa bikin exploit yang benar secara logika tetap gagal karena ukuran chunk/metadata beda. Peserta jalankan lokal dengan interpreter custom, misal:
+
+```
+chmod +x columbina ld-linux-x86-64.so.2
+./ld-linux-x86-64.so.2 --library-path . ./columbina
+```
+
+atau patch lewat pwntools (`ELF.patchelf` / `pwninit`). Protections: NX on, canary on, PIE off (disengaja — biar soal fokus ke heap, tidak ditumpuk sama defeat-PIE).
+
+## Local run
+
+Run `docker compose up -d --build`, then connect with `nc 127.0.0.1 40501`.

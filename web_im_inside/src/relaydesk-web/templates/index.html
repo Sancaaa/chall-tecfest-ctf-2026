@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - RelayDesk Operations Control{% endblock %}
+
+{% block content %}
+<section>
+  <h1>Cluster Operations Dashboard</h1>
+  <p class="lead">
+    Centralized monitoring and diagnostic gateway for RelayDesk microservices. Inspect service availability, test cross-subnet integrations, and verify private routing endpoints.
+  </p>
+
+  <div class="callout">
+    <div class="callout-title">Operational Notice: VPC Routing Policy</div>
+    <p>
+      Direct public ingress to internal services has been restricted. All service-to-service validation and diagnostic payloads must be verified through the Connection Tester utility.
+    </p>
+  </div>
+
+  <h2>Quick Operations</h2>
+  <div class="grid-cards">
+    <div class="action-card">
+      <div>
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+        <h3>API Connection Tester</h3>
+        <p style="color: var(--color-text-secondary); margin-bottom: 1.25rem;">
+          Dispatch GET and POST requests through the internal relay proxy. Inspect raw HTTP status codes, response headers, and returned JSON bodies.
+        </p>
+      </div>
+      <a href="/tools/connection" class="btn btn-primary">
+        Open Connection Tester
+      </a>
+    </div>
+
+    <div class="action-card">
+      <div>
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+        </svg>
+        <h3>Integration Status</h3>
+        <p style="color: var(--color-text-secondary); margin-bottom: 1.25rem;">
+          View the real-time operational status, service aliases, and subnet allocations for active cluster nodes.
+        </p>
+      </div>
+      <a href="/status" class="btn btn-secondary">
+        View Service Status
+      </a>
+    </div>
+
+    <div class="action-card">
+      <div>
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        <h3>Networking Guide</h3>
+        <p style="color: var(--color-text-secondary); margin-bottom: 1.25rem;">
+          Review VPC naming conventions, internal DNS zones (*.svc.local), and standard daemon port allocations.
+        </p>
+      </div>
+      <a href="/help/networking" class="btn btn-secondary">
+        Read Networking Docs
+      </a>
+    </div>
+  </div>
+
+  <h2>Cluster Environment Summary</h2>
+  <div class="card">
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Environment Property</th>
+            <th>Configuration Value</th>
+            <th>Health State</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cluster Domain</strong></td>
+            <td><code>svc.local</code> (Internal VPC Scope)</td>
+            <td><span class="status-pill"><span class="status-dot success"></span>Active</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ingress Gateway</strong></td>
+            <td>RelayDesk Public Bridge (Port 3000)</td>
+            <td><span class="status-pill"><span class="status-dot success"></span>Bound</span></td>
+          </tr>
+          <tr>
+            <td><strong>Network Policy</strong></td>
+            <td>Strict Inter-Service Isolation</td>
+            <td><span class="status-pill"><span class="status-dot success"></span>Enforced</span></td>
+          </tr>
+          <tr>
+            <td><strong>SSRF Diagnostic Relay</strong></td>
+            <td>HTTP/1.1 Forwarding Enabled</td>
+            <td><span class="status-pill"><span class="status-dot success"></span>Operational</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock %}
+

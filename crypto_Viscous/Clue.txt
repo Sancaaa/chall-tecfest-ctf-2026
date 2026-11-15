@@ -1,0 +1,16 @@
+Clue1
+Look at what stays the same across all four tokens.
+
+Clue2
+If the keystream repeats, the plaintext isn’t the only thing you can rewrite.
+
+Clue3
+Take a closer look at P. Is it really what GCM expects?
+
+--------------------------------------
+
+Clue4
+Not every ring is a field. Solve it lower down first, then climb.
+
+Clue5
+Once you know the authentication key, a tag is just arithmetic.

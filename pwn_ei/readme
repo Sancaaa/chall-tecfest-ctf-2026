@@ -1,0 +1,21 @@
+# ei
+
+## Deskripsi & Clue peserta (CTFd)
+
+**Sudah dipindah** ke `Desc.txt` dan `Clue.txt` (format seragam dengan soal lain, lihat contoh `misc_ana`) — jangan duplikasi isinya di sini, edit di file itu langsung. Ringkasan `Clue.txt`: sebelum `---` = clue awal (gratis/cost rendah, bisa diupload dari jam 10.00); sesudah `---` = clue cadangan, ditambahkan manual lewat Admin Panel kalau setelah beberapa jam belum ada yang solve. `ctfd_desc.md` = versi final `Desc.txt` yang siap dipakai di kolom `desc_file` saat upload (lihat `WebTecFest/deploy/staging-setup/README.md`).
+
+## Remote
+
+Direct connection: `nc <host> 40201`
+
+## Attachment peserta: binary `ei`
+
+Peserta mendapat binary `ei` (`dist/ei`, plus `dist/ei_attachment.zip`). Program **tidak lagi** nge-print alamat `access_granted` saat connect — peserta mencari sendiri alamat variabel global itu lewat `nm`/`objdump`/gdb (PIE **off**, jadi alamatnya statis: `0x4040ac`). Offset vararg tetap ditemukan lewat probing live (`AAAAAAAA.%1$p.%2$p...`, cari `0x4141414141414141`). Protections: NX on, canary on, PIE off ("medium standar" — lihat `BINEXP_PLANNING.md`).
+
+## Local run
+
+Run `docker compose up -d --build`, then connect with `nc 127.0.0.1 40201`.
+
+## Struktur folder
+
+Source (`ei.c`) ada di `bin/`, dikompilasi di dalam `Dockerfile`. `dist/` berisi binary `ei` untuk peserta (dan `ei_attachment.zip`-nya).

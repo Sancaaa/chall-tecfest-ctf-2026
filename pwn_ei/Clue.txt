@@ -1,0 +1,10 @@
+Clue1
+Gimana cara pake address?
+
+clue2
+https://tc.gtisc.gatech.edu/cs6265/2021/tut/tut05-fmtstr.html
+https://kevinalmansa.github.io/application%20security/Format-Strings/
+
+---
+clue3
+printf berhenti membaca format string-nya tepat di byte NUL (0x00) pertama yang ketemu. Alamat 64-bit hampir pasti punya byte NUL di dalamnya. kalau payload kamu taruh alamat mentah duluan baru %n di belakangnya, bagian %n itu tidak akan pernah terbaca sama sekali. Coba balik urutannya.

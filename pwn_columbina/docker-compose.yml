@@ -1,0 +1,16 @@
+services:
+  columbina:
+    build: .
+    image: pwn_columbina
+    restart: unless-stopped
+    ports:
+      - "${BIND_IP:-100.105.142.39}:40501:40501"
+    volumes:
+      - ./flag.txt:/home/columbina_pwn/flag.txt:ro
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 100
+    mem_limit: 256m
+    cpus: 1.0

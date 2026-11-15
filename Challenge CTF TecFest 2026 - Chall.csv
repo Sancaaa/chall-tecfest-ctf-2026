@@ -1,0 +1,186 @@
+Kategori,Num,Nama Chall,Topik Chall,Author,Status,Intended Solution,Flag,Attachment,Tester,QA Status,Deployment Status,Notes Author,Notes Tester
+Cryptography,A,,"Encoding & XOR: layered ya, manfaatin properti layer sama encoding",KelvinCrypto,Completed,,TecFest26{l4y3r5_0f_enc0d1ng_x0r_m4st3r},onion-layers.zip,,,,,
+,B,Viscous,"AES-GCM buatan sendiri, nonce reuse, GHASH di GF(2)[x], modulus bukan field (P = Q²), GCD polinomial, Hensel lifting, pemalsuan tag (forgery)",MarcellForen,In Progress,"Nonce reuse memberi keystream dan tag mask yang sama, 
+tapi modulus GHASH-nya P = Q² dan bukan field. 
+Cari H mod Q lewat GCD polinomial selisih tag, lalu Hensel-lift ke mod Q². 
+Setelah itu palsukan token admin root dengan perintah gibe_flag.",TecFest26{bl0b_bl0b_p0ly},"nc 
+cube_blob.jpg
+viscous
+
+desc: Imma introduce you to my blob friends. They guard the admin console with a token scheme of their own design, and they’ve been handing out tokens all day.
+
+Convince them you’re root, then ask nicely for the flag
+
+Hints:
+1. Look at what stays the same across all four tokens.
+2. If the keystream repeats, the plaintext isn’t the only thing you can rewrite.
+3. Take a closer look at P. Is it really what GCM expects?
+4. Not every ring is a field. Solve it lower down first, then climb.
+5. Once you know the authentication key, a tag is just arithmetic.",,,,blob,
+,C,,Common Modulus Attack RSA https://github.com/Giapppp/RSA-Attacks/tree/main/Common%20Modulus%20Attack,KelvinCrypto,Completed,,,shared-modulus.zip,,,,,
+,D,Sinclair,"RSA dengan e yang tidak coprime terhadap φ(N), faktorisasi Pollard p−1 (p−1 smooth), akar ke-e modular (banyak akar mod q), CRT, scripting netcat",MarcellForen,In Progress,"Faktorkan N dengan Pollard p−1 karena p−1 smooth. Cari satu akar ke-257 mod p dan 257 akar mod q (karena 257 membagi q−1), gabungkan dengan CRT, lalu kirim kandidat m yang SHA256-nya cocok dengan check sebelum 180 detik habis.",TecFest26{th3_gr34t_s1ncl41r_d03s_1t_4g41n},"nc 
+Sinclair Deadlock.jpg
+sinclair
+
+desc: The great Sinclair has sealed his vault once more. Every visitor gets a brand-new lock, forged the moment they knock, and he swears nobody has ever opened one.
+
+Bring him the secret he locked away before his patience runs out.
+
+hints:
+1. Every lock is new, but the locksmith always follows the same recipe.
+2. Not every prime is as rough around the edges as it looks.
+3. Some factoring methods care more about the neighbour of a prime than the prime itself.
+4. If normal decryption refuses to work, ask why the inverse doesn’t exist.
+5. When one answer turns into many, let the check choose.
+
+",,,,sigma sigma,
+,E,Nahida's Irminsul Interception ,"AES-CFB IV statis: bocor keystream, forge header CRC32, oracle AES dari rantai CFB (nc + pcap)
+",SancaPWN,In Progress,,TecFest26{7er1_tEr1_D415h0R1!_m45u_M45u_k4W4IIiIiIIii_nOOo!},,,,,,
+,F,Ronova last Message?,"ECDSA Biased Nonce, Hidden Number Problem + Lattice (LLL), kasi convo AI sebagai attachment",SancaPWN,In Progress,"Bug di sesi jsonl: nonce ECDSA dari byte entropi kadang <32 -> k pendek; field hint=k.bit_length bocorkan batas tiap nonce. Bentuk HNP k_i=t_i*d+a_i mod n (t=r/s, a=h/s), saring ~100 sig hint terkecil, lattice skala per-kolom + recentering lalu LLL -> d; cek d*G=public_key; AES key=SHA256(d 32B) buka flag.enc. Offline tanpa service.",TecFest26{ROnov4aAa4a4a4Aaa44AAA4a4A},,,,,,
+Forensic,A,,"yg penting easy File Signature & Metadata: Identifikasi file berdasarkan magic bytes, periksa metadata, atau temukan informasi tersembunyi dalam properti file",KelvinCrypto,Completed,"Flag dibagi menjadi 3 pecahan yang berbeda. Pecahan tiap flag harus di reverse kembali ke dalam bentuk plain text menggunakan command ""| xxd -r -p"" untuk mengubah format heksadesimal.",TecFest26{meta_data_tells_a_story},Follow-the-Metadata.zip,,,,,
+,B,Aku Kessoku Band,menyisipkan flag di file flac lagu kessoku band,LeleWeb,Completed,"Flag dibagi jadi 2 part, part 1 ada di dalem file musik nya, tinggal buka app spectogram, untuk part 2 flag ada di metadata file, di encode base64 7 kali",TecFest26{1_LQv3_mU51c_4nD_BOCHI!},aku-suka-kessoku-band.zip,,,,,
+,C,aha,"Image container Docker/OCI (manifest, layer, diff_id), 
+whiteout/opaque layer, 
+pemulihan file yang ditimpa di layer lain, 
+korelasi log dan hash, PBKDF2, ZIP terenkripsi",MarcellForen,Review,"Ikuti urutan layer image dari manifest, l
+alu ambil state generasi 11 yang dipin di log (layer 2), 
+bukan versi yang menimpanya. 
+Gabungkan dengan packet dispatch dari layer 3 untuk menurunkan password PBKDF2, l
+alu buka receipt DL-8841.zip dari layer 5.",TecFest26{4h4_l4ugh_1n_y0ur_f4c3},"aha-image.tar
+aha.jpg
+
+desc: The release team says the aha package is clean and ready to publish. An audit, however, found one delivery that never made it into the final report.
+
+Dig through the evidence and recover the receipt for that delivery.
+
+Hints:
+1. Layers tell a story, but only in the order the manifest says.
+2. Deleted doesn’t always mean gone, and hidden doesn’t always mean deleted.
+3. Finishing a job and starting it don’t always use the same state.
+4. Same name, different content: trust the hashes the log recorded.
+5. The program that wrote the receipt ships inside the image too.",,,,ahahahahhaha,
+,D,Unsent,"SQLite WAL (header, frame, checksum, batas commit), rekonstruksi snapshot database, transaksi yang belum di-commit, join antar tabel dari snapshot yang sama, PBKDF2, ZIP AES",MarcellForen,Review,"pulihkan pesan yang ditarik dari SQLite WAL, lalu bedakan revisi committed 
+dengan revisi pengecoh yang belum committed.",TecFest26{l0wk3y_1m_m0v1ng_0n},"unsent.zip
+
+all in his mind_.jpg
+
+desc: A delivery receipt was sent, revised, and then recalled from Relay Desktop. The workstation was seized while the application was still running.
+
+Recover the receipt that stood immediately before the recall.
+
+hints:
+1. While an app is running, the main database file isn’t the whole story.
+2. A write-ahead log remembers more than the file it belongs to.
+3. Only what was committed really happened.
+4. The latest state doesn’t necessarily hold the last accepted content.
+5. Keys rotate. Take everything from the same moment in time.",,,,all in his mind,
+,E,Forget Me Not,"Analisis PCAP, SIP/SDP re-INVITE, fax over IP (T.38/UDPTL), redundansi paket dan nomor urut yang wrap, protokol fax T.30 (MCF vs RTN), decode gambar T.4 (Group 3), ekspor TFTP, AES-GCM dengan KDF SHA-256",MarcellForen,In Progress,,"TecFest26 
+{r3m3mb3r_m3_wh3n_1ts_th3_t1m3}","forget_me_not.pcap
+
+forgetmenot.jpg
+
+desc
+The archive gateway took several faxes that night, but the operator forgot to keep a copy of anything it received. All that survived is a network capture of the office line.
+
+Recover what was actually delivered for reference FXA-0617.
+
+hints
+1. Not every call on that line was a voice call.
+2. Sometimes a protocol sends the same data more than once, on purpose.
+3. Order packets by what they say, not by when they arrived.
+4. A page that was sent is not necessarily a page that was accepted.
+5. The gateway’s own logs explain how the archive is sealed.",,,,does he know ?,
+,F,Riddle Me This,"Analisis disk image FAT32 (VBR, label volume), pemulihan cluster terhapus/unallocated, reverse engineering .NET (ILSpy), parsing format biner + CRC + zlib, korelasi log transfer, koreksi selisih jam (clock skew), EXIF foto, rekonstruksi timeline, PBKDF2, ZIP AES",MarcellForen,Review,"Q1: dari VBR FAT32 di partisi yang mulai di LBA 2048.
+Q2:
+Hitung SHA-256 vault/blueprints.zip.
+Di sync_audit.jsonl, cari transfer user enygma yang statusnya complete dan hash objeknya sama. Transfer interrupted tidak dihitung.
+Transfer itu dilakukan PID 7132 dan selesai pukul 02:14:25Z.
+
+Q3–Q4:
+PID 7137 adalah anak 7132 dan menjalankan staging/health-reconcile.sh, yang juga muncul sebagai curl download di bash history.
+Pulihkan file yang sudah dihapus itu; BASE+WAIT di dalamnya menghasilkan waktu eksekusi Q4.
+
+Q5:
+Kamera (sample GX4-182) tertinggal 94 detik, jadi tambahkan 94 detik ke jam setiap foto.
+Setelah dikoreksi, hanya survey_1938.jpg (23:17:14 UTC) yang jatuh dalam jendela akses enygma di terminal GTC-404, yaitu 23:17:10–23:17:18.
+Site assignment berganti pukul 23:16:30. Waktu yang belum dikoreksi akan memilih Gotham_West_Depot_404, dan itu salah.
+
+Rekonstruksi cache (dibutuhkan untuk Q6):
+Dari profile backup, ambil Wayne.CacheClient.dll (.NET, bisa dibuka dengan ILSpy) dan client.ini.
+File .dat yang dihapus memakai page 4096 byte dengan header WTC3 36 byte. Chain FAT-nya sudah nol, jadi scan cluster unallocated.
+Kelompokkan page per object ID, validasi CRC, urutkan indeks, gabungkan payload, lalu dekompresi zlib.
+Hasilnya header LSE3 untuk 18 object: pool 5/6/7, generasi 40/41/42, part 0/1.
+Pilih generasi (bagian tersulit):
+Jam ws-04 lebih cepat 137 detik.
+Dispatch PID 7132 dimulai 02:16:29 waktu lokal, yaitu 02:14:12 UTC atau uptime 6252000, dan tick itu jatuh di jendela generasi 41.
+Log “completed” mencatat generasi 42, tetapi ExportSession mengunci lease saat akuisisi, jadi yang benar tetap 41.
+
+Q6:
+Material pool 6 generasi 41, part 0 lalu part 1, total 48 byte.
+Salt = 16 byte pertama dari SHA256(UID EXIF 0xA420 foto 1938 + ""WT.Export.3"").
+PBKDF2-HMAC-SHA256, 175000 iterasi, output 32 byte, ditulis dalam hex lowercase.
+
+Q7: buka project_enigma_spec.txt di dalam ZIP, lalu ambil MASTER_OVERRIDE_CODE.
+Lalu nc <IP_SERVER> 13370 dan jawab Q1–Q7.",TecFest26{l00k_wh4t_1_g0t_b4tm4n},"nygma_drive.zip
+
+does he know tiktok reaction image.jpg
+
+desc
+Edward Nygma, a WayneTech administrator, is suspected of leaking Project ENIGMA documents and preparing sabotage before he resigned. The incident response team seized his USB staging drive.
+Reconstruct what happened and answer the seven questions at the investigation gateway
+
+hints
+1. Start with what the drive says about itself.
+2. Deleted files leave pieces behind, and not always next to each other.
+3. The application left its own manual behind, in compiled form.
+4. Two devices can report different times for the same event.
+5. A job that finished didn’t necessarily use the state it finished with.",,,,,
+Reverse Engineering,A,Wall Maria Has Fallen,"basic static aalysis, g usah di protect, match 2x keadaan, https://crackmes.one/crackme/6784f8a84d850ac5f7dc5173",AgusLinux,Completed,"gerbang 1: ""strings"" menampilkan password ""shinzou_wo_sasageyo""; gerbang 2: di decompiler ghidra langsung bisa menemukan secret code, masukkan keduanya dan temukan flag",TecFest26{y3g44r3_t4t4k43_st4t1c},Wall Maria Has Fallen,SancaPWN,,,,
+,B,,"Reversing game aja vin, bebas sih, tapi kalo yg kemarin game ada, pake aja yg game",KelvinCrypto,In Progress,,,,,,,,
+,C,Petrified Binary! 10B% REVIVAL,Anti debugger https://medium.com/@mreibe/picoctf-reverse-engineering-winantidbg-0x100-0x200-0x300-write-up-46a9ebc25c4c,AgusLinux,Completed,"cek file pakai file, strings, nm -D (ketemu import ptrace dan .init_array), jalanin di gdb/strace ditolak karena ptrace(TRACEME), buka ghidra cari main dari entry, baca fungsi pengecek (+0x37, rol, xor i*0x1f, xor 0xC5 == TARGET), copy array TARGET dan BLOB, balik rumus (atau brute force per karakter) dapet formula, flag = BLOB xor formula (atau input formula ke ./statue langsung, jangan berhenti lama di debugger karena ada timing check)",TecFest26{s3nku_m4d3_c0l4_b3f0r3_h3_f1x3d_th1s_ptr4c3_ch3ck_10_b1ll10n_pct},Petrified Binary! 10B% REVIVAL,,,,peserta dapet file statue,
+,D,The Apperentice grimoire,Golang,LeleWeb,Review,,TecFest26{g0_vm_4ppr3nt1c3_gr1m01r3},https://drive.google.com/file/d/1RB7Td-rOPGMAB6_-2aZn_J4WDNHIK9-4/view?usp=sharing,,,,,
+,E,Naberius Chained Book of Life,"Golang, custom VM + bytecode terenkripsi, self-patching, 2 chain stage",SancaPWN,Completed,"Pulihkan simbol Go dari gopclntab (binary di-strip), temukan blob go:embed dan loop fetch-decode-dispatch di run; ambil dua tabel dispatch (A dan B) beserta kunci opcode kA/kB; tulis dekoder yang meniru rolling key (drift/stir) dan menerapkan handler PATCH (tanpa itu aliran desync jadi sampah); dekode stage 1 (prologue SWP + 29 grup LOAD..CHK) yang tidak bergantung input; invert tiap grup dari target CHK ke belakang secara berurutan karena MIX membawa akumulator (x = ror8(acc_new - a, 1) ^ acc_old); hitung kunci SEAL dari 29 byte mem hasil invert dan buka stage 2; ikuti MODE ke tabel B dan invert stage 2 dengan cara yang sama; batalkan permutasi SWP untuk mendapat flag.",TecFest26{1_4M_7H3_sh4d3_s1NN3R_W17CH_4nd_4LCH3MY_17_s3LF},naberius_attachment.zip,,,,,
+,F,Rhinedottir Enigma Machine,"C static stripped, fork + ptrace: parent jadi kernel palsu untuk child (syscall 0x401/0x402), mesin rotor ala Enigma 256 simbol, salt dari rip pemanggil + autokey, control-flow flattening ringan",SancaPWN,Completed,"Child cuma kurir: baca 58 byte, kirim tiap byte lewat syscall palsu 0x401 (3 wrapper dipilih indeks%3, 0x402 reset), bandingkan dengan tabel 58 byte tanpa keluar lebih awal. Parent (tracer ptrace, strace -f/gdb child ditolak, pakai set follow-fork-mode parent) yang menjawab syscall: 3 rotor 256 simbol + reflector tanpa titik tetap, stepping Enigma dengan double-step, salt = ((rip>>4)^(rip>>12))&0xff dari alamat setelah syscall di tiap wrapper ditambah ke pos[2], lalu plaintext ditambah ke pos[2] (autokey). Ambil ROT, REFL, N0, N1, posisi awal, tabel harapan dan 3 alamat call site dari binary; dekripsi berurutan per byte (state hanya bergantung plaintext, tiap posisi tepat 1 kandidat dari 256).",TecFest26{Sh0W_ME_7He_7RU7h_4nd_7he_Me4N1N9_0f_7H1S_W0RLd},rhinedottir_attachment.zip,,,,,
+Binary Exploitation,A,Mavuika Jumping Motorcycle,"Ret2win klasik. overflow return address, lompat ke win() yang gak pernah dipanggil normal flow.",SancaPWN,Completed,Cari alamat win() statis dari attachment binary (no PIE) -> overflow buf[64] dengan padding 72 byte + 1 gadget ret (fix alignment SSE) + alamat win() sebagai return address -> win() baca & cetak flag.,TecFest26{love_of_you_is_my_most_cherished_thing_so_stay_alive_bravely},mavuika_attachment.zip,,,,"NX on, canary off, PIE off, trik alignment gadget ret terkonfirmasi perlu dipakai pas lawan remote.",
+,B,Ei's Leaked Written Secret,"Format string exploitation. printf(user_input) tanpa specifier; alamat access_granted dicari manual lewat nm/objdump/gdb (no PIE, GAK di-leak program lagi), ditulis via %n (direct parameter access).",SancaPWN,Completed,"Probing %N$p (marker 8-byte unik, misal AAAAAAAA.%1$p...%14$p) untuk temukan offset argumen vuln printf milik sendiri -- OFFSET BISA BEDA tiap instance/restart walau binary sama, WAJIB re-probe live, jangan asumsikan tetap -> alamat access_granted didapat dari nm/objdump binary (statis, no PIE, tidak di-leak program) -> payload ""AAAA%N$n"" + alamat 8-byte (spesifier duluan, alamat belakangan -- hindari byte NUL di alamat memotong scan printf) -> access_granted != 0 -> give_flag() terpanggil.",TecFest26{1f_L0v1N9_y0U_15_4_51n_1lL_9L4Dly_83C0m3_4_51Nn3r},"ei_attachment.zip
+",,,,"NX on, canary on, PIE off. Binary & alamat access_granted sempat direvisi beberapa kali (alamat & offset %N$ bisa geser per rebuild/restart) ",
+,C,Sandrone Engineering Squad,"Shellcode injection (NX off) + badchar-free XOR payload encoding. Dua channel: payload disanitasi (fgets+strcpy, badchar 0x00/0x0a) untuk shellcode terenkode, overflow mentah (read) untuk overwrite return address balik ke shellcode.",SancaPWN,Completed,"Leak alamat buf_read (stack, lewat output program) -> encode shellcode (cat flag.txt + exit) pakai XOR key yang lolos badchar 0x00/0x0a (cari key via GF(2^8) set analysis, bukan brute force), tempel decoder stub posisi-independen (teknik jmp/call/pop, hindari lea rip-relative) di depan shellcode terenkode -> kirim lewat channel ""payload diagnostik"" (disanitasi, aman buat shellcode terenkode) -> overflow channel ""kontrol overflow"" (read mentah, offset 88 byte: buf[80]+saved rbp 8 byte) dengan padding + alamat buf_read sebagai return address -> decoder decode in-place lalu eksekusi shellcode -> cat flag.txt.",TecFest26{c0_Lum_B1_nAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA},sandrone_attachment.zip,,,,"NX off, canary off, PIE off. strcpy di channel ""payload diagnostik"" juga gak ada bound check (overflow independen s.d. 216 byte), kayanya sih bug, tapi yaudah, kasi aja",
+,D,Furina Mecanique D'Analyse Cardinale,"OOB array index (idx menu 1 tanpa bound check) -> arbitrary-offset write ke jump table function-pointer court[16..19] di BSS (bukan ELF GOT) -> hijack panggilan court[idx2+16](a,b,c) di menu 2 -> tetap harus panggil win() dengan argumen (a,b,c) yang benar sesuai calling convention.",SancaPWN,Completed,"Tulis 8 byte alamat win() (statis, no PIE) ke index di luar batas (idx=4, supaya idx*32 == 128 byte = offset court[16]) lewat menu ""catat catatan kasus"" -> menimpa slot jump table court[16] -> panggil ""jatuhkan putusan"" index 0 (termap ke court[0+16]=court[16]) dengan argumen a=0x1337 b=0xC0DE c=0xF00DBEEF sesuai calling convention yang dicek win().",TecFest26{V0c4L_C0Rd5_r34dY_8l00d_5u94R_R3pl3N15H3d_L37_7h3_5h0w_8391N!},furina_attachment.zip,,,,"NX on, PIE off, canary on",
+,E,Columbina's Returning,Heap exploitation. UAF + function pointer overwrite via menu alloc/free/edit/view.,SancaPWN,Completed,v2 (tcache poisoning): Alokasi 3 fragmen -- A (sacrificial); B (TARGET tetap hidup); C (sacrificial) -> leak alamat heap ketiganya. Lepas A lalu C (LIFO -> tcache count jadi 2). UAF-WRITE: ukir ulang nama C (sudah di-free!) dengan 8 byte PROTECT_PTR(C; target) [target = alamat B + offset otoritas] -- bypass safe-linking glibc >=2.32. Tulis entri Luonnotar #1 panjang=0 (konsumsi C -> tcache head jadi target). Tulis entri Luonnotar #2 panjang=8 (count masih 1>0 -> pop target -> tulis alamat win()) -> landing di B->otoritas. Uji otoritas slot B -> win() terpanggil. Menu marrow sintetis (opsi 7 di v2) selalu cetak flag salah tanpa eksploitasi apapun (chaff).,TecFest26{C0lUm81N4_1s_my_81n1_9w3H_ny4_4Dm1N_PwN},columbina_attachment.zip,,,,"NX+canary on PIE off (disengaja -- fokus heap/tcache lihat BINEXP_PLANNING.md) + glibc di-pin via digest. Bug baru v2: UAF-WRITE (ukir ulang nama fragmen yang sudah di-free) -> tcache poisoning (safe-linking bypass) -- bukan lagi cuma UAF+reuse-by-size (lihat NOTES.md). Chaff: menu terpisah (""7. Marrow sintetis"" -- nomor bertambah di v2 karena ada opsi baru) yang selalu cetak flag salah tanpa eksploitasi apapun meniru otoritas Trilunar palsu ala Dottore. Detail: lihat NOTES.md bagian Chaff flag. | Sudah dites blackbox end-to-end lawan v2 binary (build-id baru), tetap solvable via tcache poisoning safe-linking bypass setelah patch opsi 5 diperketat jadi <=16 byte.",
+,F,Istaroth is Tarot?,"Multi-stage ROP & shell. leak alamat libc/internal (tahap 1), bangun ROP chain untuk execve/ret2libc (tahap 2), shell dibatasi catflag.",SancaPWN,Completed,v2 (ret2libc): Tahap 1: overflow 64 byte menimpa field unlocked di struct (data-only) tanpa sentuh return address -> program leak alamat puts() ASLI dari libc (GOT) dan alamat string './catflag' di binary sendiri. Tahap 2: hitung base libc dari leak puts(). Cari gadget pop-rdi;ret dan alamat system() di libc.so.6 yang dibagikan. Overflow 88 byte dengan 1 gadget ret (fix alignment) + pop-rdi + alamat string + alamat system() -> system('./catflag'). Tidak ada win() siap pakai lagi -- peserta bangun ROP chain ret2libc sendiri. Attachment sekarang wajib sertakan libc.so.6 + ld.,TecFest26{s33dS_0F_S70r13S_8R0u9h7_8y_7H3_W1Nd_aND_cUl71va73d_8Y_71m3},istaroth_attachment.zip,,,,"NX+PIE on canary off (disengaja -- lihat NOTES.md; fokus Hard = PIE-defeat dua-leak + ROP chain ret2libc beneran bukan brute-force canary). decoy_notice() murni string-trap (strings doang) tidak reachable dari exploit manapun -- beda dari v1 yang chaff-nya reachable via salah hitung offset. | Sudah dites blackbox end-to-end (termasuk konfirmasi decoy di 0x1219 gak reachable lewat bn_function_xrefs_to, 0 caller).",
+Web Explotation,A,Jokowi's True Ijasah,File Upload Bypass → RCE → Fake Flag → Breadcrumb → Real Flag (nama folder flagnya nyeleneh jadi kekny mustahil buat di tebak AI first try dan berlapis lapis),LeleWeb,Review,"upload file dengan nama persis sesuai ketentuan, file punya header jpeg dengan dimensi minimal 400 * 300 px. Gada cek ekstensi, jadi intended solution upload file php dengan header jpeg yang berisi payload nge baca file flag.txt, dari sini akan ngulang baca flag.txt (fake) dan ijasah.txt(clue) sampai di folder flag asli di /flag/notAflag/reallyNotAFlag/AduhDibilanginGadaFlag/MulyonoTidakSenang/AwasDiCulik/flag.txt",TecFest26{Mu1y0n0_tuk4ng_t1pu_t1pu_Saya_Akan_Lawan},doksli owi owi ,,,,,
+,B,The Trust Protocol: Zero's Authority,"session cookie forgery. flask secret key bocor lewat backup file ter-expose, dipake buat forge session cookie dan bypass role-based access control",AgusLinux,Completed,"login as member, cari file backup konfigurasi yg ter-expose lewat recon/fuzzing, ekstrak flask secret key dari sana, forge session cookie dengan role ""zero"" pakai secret key tersebut, lalu akses arsip rahasia buat ngambil flag",TecFest26{z3r0_tru5t_n0_4uth0rity},The Trust Protocol: Zero's Authority,,,,,
+,C,I'm inside of inside of inside,I'm inside of inside of inside,LeleWeb,Review,,TecFest26{wh3n_yhH_b1s4_d1_d4l3m_h4t1_ny4_d14},im inside,,,,,
+,F,,"pentest lab rahade, perlu diadjust sesuai format ctf, kontak lele",RahadeMeow,Not Started,,,,,,,,
+,D,mr fool,mr fool but easy kinda,LeleWeb,Review,,TecFest26{h34rtb34t_h34rtbr34k_4ll_0v3r_g4l4u_p4r4h_b4ng3t},fools,,,,,
+,E,,,RahadeMeow,In Progress,,,,,,,,
+Miscellaneous,A,Voyager,sstv decoder,MarcellForen,In Progress,Check voip call within the .pcap file then use robot36 sstv decoder to get the image,TecFest26{v0y4g3r_st1ll_0ut_th3r3},voyager_call.pcap,,,,turip ip ip ip turip,
+,B,The White Room Archive,Steganografi + Puzzle ,AgusLinux,Completed,"ekstrak dengan zsteg, scan qr, cari instagram tokoh dari step sebelumnya, cari URL di gambar postingan, balik digit NIM untuk pass ZIP, zsteg terakhir and flag",TecFest26{h1dd3n_l5b_b1t5_4gu5_d4rm4_4y4n0k0j1_wh1t3_r00m_53cr3t},The White Room Archive,MarcellForen,,,peserta cuma dikasi file clashroom.png saja,
+,C,Asmoday's Heavy Rubik Rotation,Rubik's Cube corner rotation https://www.youtube.com/watch?v=kRrK4VJBf2s&pp=ygUVcnViaWtzIGxpbmVhciBhbGdlYnJh,SancaPWN,Review,"Connect via nc, terima banner + 1 baris JSON berisi 13 kubus (26 pasangan (c,R) per kubus, urutan acak). Hanya 4 center aktif (daftar channels, urut MSB ke LSB) yang R-nya berputar terhadap sumbunya sebanyak k quarter-turn (k=0..3; k=1 searah jarum jam dilihat dari ujung c, R = c c^T - [c]x; k=2 = k1 dikuadratkan; k=3 = transpos k1); keping lain identitas. Baca k tiap channel -> basis-4 -> 1 kubus = 1 karakter ASCII (64*k0+16*k1+4*k2+k3, big-endian). 13 karakter = token alnum acak per koneksi; kirim balik dalam 20 detik di koneksi yang sama (wajib otomasi) -> server kirim flag. ",TecFest26{h41l_my_pR0uD_Kw33N_0n_4Nd_0N},,,,,nc,
+,D,,OSINT,KelvinCrypto,In Progress,,,,,,,,
+,E,All-in Or Nothing,Judi main poker,LeleWeb,In Progress,"ada 2 cara, 1. cara orang gila : murni menangin 10x berturut-turut, cara 2 (intended) : blackmail dan perang psikologis sama dealer nya, kita kuak cerita nya dia dan kebobrokan nya dia sebagai pribadi dan mainkan psikologi nya sampe dia menyerah, ngasi flag, dan bundir ",TecFest26{jud1_4d4l4h_j4l4n_n1nj4_ku},https://drive.google.com/file/d/1W_WrUfxrYXP0f4lsD6gWJb-pci8OQssV/view?usp=sharing,,,,,
+,F,Ana's Lost Rock Writing?,"OSINT genshin scripting, phrase puzzle. https://genshin-impact.fandom.com/wiki/Snezhnayan_Script",SancaPWN,Review,"nyari tulisannya di google image
+kan ketemu itu snez
+baca manual
+pecahin puzzle phrasenya, dapet deh apa yg sedang di refer",TecFest26{BELYI_TSAR},,,,,,
+,0,Emergency Food Check,Sanity Check,SancaPWN,Completed,"Run python, baca chat ai, gabungin flag, kelar
+wrap dengan format flag",TecFest26{P4iM0ns_3m3RgEncY_Ch3Ck},,SancaPWN,On Progress,,100 Point Static,
+,1,Misteri Kolam Keajaiban,Mancing kaya stardew valley,SancaPWN,Completed,Mancing sampai Hoki dan dapat chest,TecFest26{M4nc1ng_m4NiA},,SancaPWN,Passed,Deployed,ESATER EGG,
+,2,Kandang Ayam Semesta,Gacha ayam,SancaPWN,Completed,Click chicken yang benar,TecFest26{aY4M_ay4m_4pA_Y4nG_BeS4r???_Ay4m_5em3St4},,SancaPWN,Passed,Deployed,EASTER EGG,
+,3,Kucing Penguasa TecFest,solve semua chall,SancaPWN,Completed,"solve semua chall, lalu tap kucing",Tecfest26{P3nGu45A_FL4G_T3cF3st},,SancaPWN,Passed,Deployed,EASTER EGG,
+,,,Sanca,16,,,35,,,,,,
+,,,Lele,6,,,,,,,,,
+,,,Marcell,7,,,,,,,,,
+,,,Agus,4,,,,,,,,,
+,,,Kelvin,5,,,,,,,,,
+,,,Rahade,2,,,,,,,,,
+,,,Total,40,,,,,,,,,
+,,,,,,,,,,,,,
+WARM UP,,,,,,,,,,,,,
+Warm Up - Cryptography,0,"[10] Jean Danco dan Si Merah Kaboom
+","XOR single-key sederhana, key terlihat jelas di script enkripsi",SancaPWN,Completed,"Baca enc.py, temukan KEY dan fungsi xor_encrypt. XOR bersifat involutif jadi dekripsi = enkripsi ulang dengan key yang sama terhadap output.enc",TecFest26{kL33_570p_80m_1k4n_d1_D4N4U},,,,,,
+Warm Up - Forensic,0,[20] I pulled a QIQI :(,Magic bytes & file signature: PNG disamarkan ekstensi .pdf,SancaPWN,Completed,"Cek magic bytes (89 50 4E 47 = signature PNG, bukan %PDF header), ganti ekstensi ke .png, baca teks flag di dalam gambar",TecFest26{I_PULL3d_A_qIQi_l057_fIf7Y_FiF7Y},,,,,,
+Warm Up - Reverse Engineering,0,[30] Keqing karakter utamaku,"Basic static analysis, binary C polos tanpa proteksi/obfuscation",SancaPWN,Completed,"strings keqing | grep TecFest (atau buka di decompiler, lihat tab Strings) -- flag langsung plaintext di .rodata, tidak perlu menjalankan program",TecFest26{keq1n9_m41n5},,,,,,
+Warm Up - Binary Exploitation,0,[40] Mona-Lisa,"Buffer overflow paling dasar: spam input sampai crash (SIGSEGV), server langsung kasih flag. Canary off.",SancaPWN,Completed,"Kirim payload lebih dari 72 byte (misal 200x 'A') ke service nc, overflow menimpa return address jadi alamat invalid, program SIGSEGV saat ret, signal handler di server menangkap crash itu dan mengirim flag otomatis. Tidak perlu hitung offset presisi/alamat apapun.",TecFest26{m0n4_K4L0_k3T3mu_l154_j4d1_tuL154N_l0h_K0k_8154_91tU_K4k_K4R3n4_m0N4_l154},,,,,,
+Warm Up - Web Explotation,0,[50] Si dipies paling sakit,"Flag tersebar 3 bagian di komentar HTML/CSS/JS, murni view-source",SancaPWN,Completed,"View Page Source untuk bagian HTML, buka style.css untuk bagian CSS, buka script.js untuk bagian JS (lewat DevTools Sources/Network), gabungkan ketiga bagian berurutan",TecFest26{DP5_d1Luc_pAl1Ng_5AK1t},,,,,,
+Warm Up - Miscellaneous,0,[60] Emergency Food Check,"Sanity check -- dipakai ulang dari Miscellaneous Num 0 kompetisi utama (keputusan Sanca, file tidak dibuat ulang)",SancaPWN,Completed,"Sama seperti kompetisi utama: run python hello_paimon.py, baca chat AI yang ditautkan, gabungkan serpihan flag sesuai instruksi di dalamnya",TecFest26{P4iM0ns_3m3RgEncY_Ch3Ck},,,,,sama dengan sanity checck utama,

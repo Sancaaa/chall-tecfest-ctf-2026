@@ -1,0 +1,20 @@
+Clue1
+fork. https://man7.org/linux/man-pages/man2/ptrace.2.html
+
+Clue2
+Nomor syscall-nya bukan milik Linux
+
+clue3
+Baca sisi parent
+--------------------------------------
+
+Clue4
+Mesinnya rotor + reflektor ala Enigma, tapi alfabetnya 256 byte. Perhatikan aturan stepping-nya
+https://en.wikipedia.org/wiki/Enigma_machine
+https://en.wikipedia.org/wiki/Enigma_rotor_details
+
+clue5
+Modelmu benar di huruf pertama tapi sampah setelahnya? Mesin itu mengenali dari mana kamu memanggilnya
+
+Clue6
+Huruf yang sudah lewat ikut memutar rotor (autokey). Dekripsi harus berurutan

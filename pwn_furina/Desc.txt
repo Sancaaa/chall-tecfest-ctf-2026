@@ -1,0 +1,5 @@
+According to the Oratrice Mechanic D'analyse Cardinale
+
+https://www.youtube.com/watch?v=i7vpisttsU0
+
+`nc chall.tecfest.site 40401`

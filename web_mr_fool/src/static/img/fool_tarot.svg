@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 400" fill="none">
+  <defs>
+    <linearGradient id="cardBorder" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c9a84c"/>
+      <stop offset="50%" stop-color="#e6a817"/>
+      <stop offset="100%" stop-color="#c9a84c"/>
+    </linearGradient>
+    <linearGradient id="sunburst" x1="0.5" y1="0.5" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#fff8dc" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#ffe066" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0.2"/>
+    </linearGradient>
+    <radialGradient id="eyeGlow" cx="0.5" cy="0.4" r="0.6">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Card background -->
+  <rect x="10" y="10" width="260" height="380" rx="10" fill="#0a0a1a" stroke="url(#cardBorder)" stroke-width="3"/>
+
+  <!-- Inner border ornament -->
+  <rect x="18" y="18" width="244" height="364" rx="7" fill="none" stroke="#c9a84c" stroke-width="0.5" stroke-dasharray="4 6"/>
+
+  <!-- Sun at top -->
+  <circle cx="140" cy="55" r="30" fill="url(#sunburst)"/>
+  <circle cx="140" cy="55" r="30" fill="none" stroke="#e6a817" stroke-width="0.5"/>
+
+  <!-- Sun rays -->
+  <g opacity="0.3" stroke="#ffe066" stroke-width="0.5">
+    <line x1="140" y1="17" x2="140" y2="10"/>
+    <line x1="160" y1="21" x2="165" y2="15"/>
+    <line x1="174" y1="33" x2="180" y2="28"/>
+    <line x1="180" y1="55" x2="189" y2="55"/>
+    <line x1="174" y1="77" x2="180" y2="82"/>
+    <line x1="160" y1="89" x2="165" y2="95"/>
+    <line x1="120" y1="17" x2="120" y2="10"/>
+    <line x1="106" y1="21" x2="100" y2="15"/>
+    <line x1="93" y1="33" x2="87" y2="28"/>
+    <line x1="100" y1="55" x2="91" y2="55"/>
+    <line x1="106" y1="77" x2="100" y2="82"/>
+    <line x1="120" y1="89" x2="120" y2="95"/>
+  </g>
+
+  <!-- Eye of Mystery (beyond the sun) -->
+  <ellipse cx="140" cy="50" rx="12" ry="7" fill="none" stroke="#c9a84c" stroke-width="1" filter="url(#glow)"/>
+  <circle cx="140" cy="50" r="3" fill="#c9a84c"/>
+  <!-- Eye rays -->
+  <g opacity="0.4" stroke="#c9a84c" stroke-width="0.5">
+    <line x1="140" y1="40" x2="140" y2="36"/>
+    <line x1="152" y1="46" x2="156" y2="43"/>
+    <line x1="128" y1="46" x2="124" y2="43"/>
+    <line x1="148" y1="50" x2="154" y2="50"/>
+    <line x1="132" y1="50" x2="126" y2="50"/>
+    <line x1="152" y1="54" x2="156" y2="57"/>
+    <line x1="128" y1="54" x2="124" y2="57"/>
+    <line x1="140" y1="60" x2="140" y2="64"/>
+  </g>
+
+  <!-- Gears of chaos (behind figure) -->
+  <g opacity="0.15" stroke="#1a8b8b" stroke-width="1" fill="none">
+    <circle cx="140" cy="170" r="40"/>
+    <circle cx="140" cy="170" r="34" stroke-dasharray="6 3"/>
+    <circle cx="140" cy="170" r="28" stroke-dasharray="4 4"/>
+    <!-- Gear teeth - left gear -->
+    <path d="M 100 170 L 90 170 M 140 210 L 140 220 M 180 170 L 190 170 M 140 130 L 140 120"
+          stroke-width="2" stroke-dasharray="0" opacity="0.5"/>
+  </g>
+
+  <g opacity="0.1" stroke="#8b1a8b" stroke-width="1" fill="none">
+    <circle cx="100" cy="200" r="25"/>
+    <circle cx="100" cy="200" r="19" stroke-dasharray="4 3"/>
+    <circle cx="180" cy="140" r="20"/>
+    <circle cx="180" cy="140" r="14" stroke-dasharray="3 3"/>
+  </g>
+
+  <!-- The Fool figure (stylized silhouette) -->
+  <g fill="#d4af37" opacity="0.8">
+    <!-- Body / cloak -->
+    <path d="M 130 130 L 115 220 L 140 240 L 165 220 L 150 130 Z" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+    <path d="M 130 130 Q 140 120 150 130" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+
+    <!-- Head -->
+    <circle cx="140" cy="115" r="12" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+
+    <!-- Inner face mask (blank/fool) -->
+    <circle cx="140" cy="113" r="8" fill="none" stroke="#e6a817" stroke-width="0.8" stroke-dasharray="2 2"/>
+
+    <!-- Hat / jester cap -->
+    <path d="M 125 108 L 140 90 L 155 108" fill="none" stroke="#c9a84c" stroke-width="1"/>
+    <!-- Bells on hat -->
+    <circle cx="125" cy="108" r="2" fill="#e6a817"/>
+    <circle cx="155" cy="108" r="2" fill="#e6a817"/>
+
+    <!-- Arms raised -->
+    <path d="M 130 145 Q 115 140 110 155" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+    <path d="M 150 145 Q 165 140 170 155" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+  </g>
+
+  <!-- Bag on stick -->
+  <circle cx="180" cy="162" r="6" fill="none" stroke="#c9a84c" stroke-width="1"/>
+  <line x1="170" y1="155" x2="180" y2="162" stroke="#c9a84c" stroke-width="1"/>
+  <line x1="165" y1="175" x2="170" y2="155" stroke="#c9a84c" stroke-width="1"/>
+
+  <!-- Dog (loyal companion) -->
+  <g fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.7">
+    <!-- Body -->
+    <ellipse cx="100" cy="250" rx="12" ry="7"/>
+    <!-- Head -->
+    <ellipse cx="80" cy="245" rx="6" ry="5"/>
+    <!-- Ears -->
+    <path d="M 76 241 Q 72 232 77 236"/>
+    <!-- Legs -->
+    <line x1="93" y1="255" x2="93" y2="262"/>
+    <line x1="107" y1="255" x2="107" y2="262"/>
+    <!-- Tail -->
+    <path d="M 112 247 Q 118 242 116 237"/>
+    <!-- Eye -->
+    <circle cx="78" cy="244" r="1" fill="#c9a84c"/>
+  </g>
+
+  <!-- Cliff edge -->
+  <path d="M 30 270 Q 60 265 90 270 Q 120 275 180 270 Q 220 268 260 272" fill="none" stroke="#c9a84c" stroke-width="1"/>
+
+  <!-- Ground / abyss below -->
+  <path d="M 30 270 L 30 380 L 250 380 L 250 270" fill="rgba(201,168,76,0.03)"/>
+  <line x1="40" y1="290" x2="240" y2="290" stroke="#c9a84c" stroke-width="0.3" opacity="0.3"/>
+  <line x1="50" y1="310" x2="230" y2="310" stroke="#c9a84c" stroke-width="0.3" opacity="0.2"/>
+  <line x1="60" y1="330" x2="220" y2="330" stroke="#c9a84c" stroke-width="0.3" opacity="0.15"/>
+
+  <!-- Abyss stars (in the darkness below) -->
+  <g fill="#c9a84c" opacity="0.15">
+    <circle cx="80" cy="330" r="1"/>
+    <circle cx="150" cy="350" r="1"/>
+    <circle cx="200" cy="335" r="0.7"/>
+    <circle cx="120" cy="360" r="0.8"/>
+    <circle cx="170" cy="370" r="0.6"/>
+  </g>
+
+  <!-- Cabalistic marks / Beyonder symbols -->
+  <g fill="none" stroke="#c9a84c" stroke-width="0.4" opacity="0.5">
+    <!-- Left column -->
+    <line x1="25" y1="130" x2="25" y2="250"/>
+    <circle cx="25" cy="130" r="4"/>
+    <text x="10" y="145" fill="#c9a84c" opacity="0.5" font-size="6" font-family="serif">⚗️</text>
+    <text x="10" y="165" fill="#c9a84c" opacity="0.5" font-size="6" font-family="serif">☿</text>
+    <text x="10" y="185" fill="#c9a84c" opacity="0.5" font-size="6" font-family="serif">🜍</text>
+    <text x="10" y="205" fill="#c9a84c" opacity="0.5" font-size="6" font-family="serif">🜂</text>
+    <text x="10" y="225" fill="#c9a84c" opacity="0.5" font-size="6" font-family="serif">🜄</text>
+    <text x="10" y="245" fill="#c9a84c" opacity="0.5" font-size="6" font-family="serif">🜁</text>
+
+    <!-- Right column -->
+    <line x1="255" y1="130" x2="255" y2="250"/>
+    <circle cx="255" cy="130" r="4"/>
+  </g>
+
+  <!-- Title "THE FOOL" -->
+  <text x="140" y="392" text-anchor="middle" fill="#c9a84c" font-family="serif" font-size="10" letter-spacing="6" filter="url(#glow)">THE FOOL</text>
+
+  <!-- "0" number -->
+  <text x="140" y="28" text-anchor="middle" fill="#c9a84c" font-family="serif" font-size="14" letter-spacing="2" filter="url(#glow)">0</text>
+
+  <!-- Pathway symbol (triforce-like) -->
+  <g fill="none" stroke="#c9a84c" stroke-width="0.6" opacity="0.7" transform="translate(140,80)">
+    <polyline points="0,-8 -8,6 8,6 0,-8"/>
+    <line x1="-4" y1="2" x2="4" y2="2"/>
+    <line x1="0" y1="6" x2="0" y2="12"/>
+  </g>
+</svg>

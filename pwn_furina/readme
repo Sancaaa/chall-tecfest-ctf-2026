@@ -1,0 +1,15 @@
+# furina
+
+(deskripsi peserta belum ditulis — placeholder, isi manual sebelum lomba, termasuk lirik Furina yang sudah dicatat di CSV Notes Author kalau mau dipakai sebagai banner/hint)
+
+## Remote
+
+Direct connection: `nc <host> 40401`
+
+## Attachment peserta
+
+Upload `dist/furina_attachment.zip` sebagai Files di CTFd (isi: binary `furina` saja, protections: NX on, canary on — red herring, bug asli OOB index bukan stack overflow, PIE off). Peserta perlu `chmod +x furina` setelah unzip (exec bit tidak terbawa lewat zip Windows).
+
+## Local run
+
+Run `docker compose up -d --build`, then connect with `nc 127.0.0.1 40401`.

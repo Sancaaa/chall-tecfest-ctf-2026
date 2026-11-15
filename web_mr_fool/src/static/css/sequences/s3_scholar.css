@@ -1,0 +1,44 @@
+/* S3 Scholar of Yore: Sepia/Parchment Scroll */
+.sequence-page.scholar-theme .challenge-container {
+  border-color: rgba(184, 134, 11, 0.2);
+}
+.sequence-page.scholar-theme .scroll-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(184, 134, 11, 0.03) 0%,
+    transparent 20%,
+    transparent 80%,
+    rgba(184, 134, 11, 0.03) 100%
+  );
+}
+.sequence-page.scholar-theme .scroll-decoration {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  font-size: 2.5rem;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+.sequence-page.scholar-theme .scroll-viewer {
+  background: rgba(30, 25, 15, 0.6);
+  border: 1px solid rgba(184, 134, 11, 0.25);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  min-height: 120px;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+.sequence-page.scholar-theme .scroll-selector {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}

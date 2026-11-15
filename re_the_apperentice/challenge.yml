@@ -1,0 +1,27 @@
+name: "The Apprentice Grimoire"
+author: "TecFest CTF Committee"
+category: "reverse"
+
+description: |
+  Seorang penyihir magang menemukan sebuah grimoire kuno dalam bentuk binary Golang. Katanya, mantra di dalamnya dilindungi oleh sebuah mesin virtual mini yang hanya menerima satu kalimat sihir yang tepat.
+
+  Jika mantranya benar, program akan menjawab `"The spell holds!"`. Jika salah, `"The spell fizzles."`. Bisakah kamu membaca cara kerja mesin virtual tersebut dan menemukan mantra yang benar?
+
+type: "StaticAttachment"
+value: 500
+
+flags:
+  - "TecFest26{g0_vm_4ppr3nt1c3_gr1m01r3}"
+
+tags:
+  - easy
+  - reverse
+  - golang
+  - vm
+
+hints:
+  - "Binary ini dikompilasi dari Golang tanpa di-strip. Cari fungsi utama buatan developer seperti main.main dan main.executeVM di daftar simbol."
+  - "Bytecode VM dan array target tidak dibangun saat runtime; keduanya tersimpan statis sebagai string literal di section .rodata."
+  - "Setiap karakter input diproses secara independen oleh VM menggunakan XOR dengan byte konstanta lalu ditambah indeks posisinya. Kamu bisa membalikkan operasinya atau melakukan brute-force per karakter."
+
+provide: "./dist"

@@ -1,0 +1,10 @@
+clue1
+https://trustica.cz/en/blog/2018/06/07/elliptic-curve-digital-signature-algorithm/
+
+clue 2
+https://cryptohack.gitbook.io/cryptobook/lattices/lll-reduction
+
+---
+
+clue 3
+https://eprint.iacr.org/2019/023

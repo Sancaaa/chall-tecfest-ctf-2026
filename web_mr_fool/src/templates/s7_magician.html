@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}S7: Magician{% endblock %}
+{% block seq_id %}S7{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="/static/css/sequences/s7_magician.css">{% endblock %}
+
+{% block content %}
+<div class="sequence-page magician-theme">
+  <a href="/" class="back-link">Back to Cabinet</a>
+
+  <div class="spell-circles"></div>
+  <div class="card-suits"></div>
+
+  <div class="sequence-header">
+    <img src="/static/img/seq_magician.svg" class="seq-emblem-img" alt="Magician emblem">
+    <div class="sequence-number">SEQUENCE 7</div>
+    <div class="sequence-name">MAGICIAN</div>
+  </div>
+
+  <div class="acting-principle">
+    <div class="principle-label">Acting Principle</div>
+    <div class="principle-quote">"Make something appear that should not exist."</div>
+    <div class="principle-pathway">Pathway of the Magician</div>
+  </div>
+
+  <div class="challenge-container">
+    <h3>The Spell Creator</h3>
+    <p>A Magician manipulates reality through misdirection. The spell creator accepts an offering and preserves more of it than the ritual interface displays.</p>
+
+    <div class="spell-creator">
+      <h4 style="color:var(--seq-accent);font-family:var(--font-heading);font-size:0.85rem;margin-bottom:1rem;">Craft a Spell</h4>
+      <div class="spell-field">
+        <label for="spell-name">Spell Name</label>
+        <input type="text" id="spell-name" value="Fireball" style="width:60%;">
+      </div>
+      <div class="spell-field">
+        <label for="spell-type">Spell Type</label>
+        <input type="text" id="spell-type" value="evocation" style="width:60%;">
+      </div>
+      <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.5rem;">
+        Note: The ritual accepts JSON attributes beyond what this form displays (e.g. <code>approved</code>).
+      </div>
+      <button onclick="submitSpell()" style="margin-top:1rem;padding:0.6rem 1.5rem;font-family:var(--font-heading);font-size:0.8rem;border:1px solid var(--seq-accent);border-radius:var(--radius);background:rgba(65,105,225,0.08);color:var(--seq-accent);cursor:pointer;">CAST SPELL</button>
+    </div>
+
+    <div id="spell-list-output" style="margin-top:1rem;font-size:0.8rem;color:var(--text-dim);"></div>
+
+    <form class="solution-form" data-seq-id="S7" style="margin-top:1.5rem;">
+      <label for="answer">Potion Token:</label>
+      <input type="text" id="answer" name="answer" placeholder="Enter the Magician's potion token..." required>
+      <button type="submit">DIGEST POTION</button>
+    </form>
+
+    <div class="feedback"></div>
+  </div>
+
+  <div class="digestion-section">
+    <div class="digestion-label">POTION DIGESTION</div>
+    <div class="digestion-bar">
+      <div class="digestion-fill" style="width: 0%"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+async function submitSpell() {
+  const name = document.getElementById('spell-name').value;
+  const type = document.getElementById('spell-type').value;
+
+  try {
+    const resp = await fetch('/s7/magician/api/spells/create', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({name: name, type: type})
+    });
+    const result = await resp.json();
+    document.getElementById('spell-list-output').textContent = JSON.stringify(result, null, 2);
+    if (result.message) {
+      document.getElementById('spell-list-output').textContent += '\n\n' + result.message;
+    }
+  } catch (err) {
+    document.getElementById('spell-list-output').textContent = 'Error: ' + err.message;
+  }
+}
+</script>
+{% endblock %}

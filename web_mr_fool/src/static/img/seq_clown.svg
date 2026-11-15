@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#b886b8" stroke-width="1" opacity="0.4"/>
+  <!-- Comedy mask (left) -->
+  <path d="M 28 25 Q 18 25 18 40 Q 18 55 28 55 Q 38 55 38 40 Q 38 25 28 25 Z"
+        fill="rgba(184,134,184,0.1)" stroke="#b886b8" stroke-width="1.5"/>
+  <circle cx="23" cy="40" r="2" fill="#b886b8"/>
+  <circle cx="33" cy="40" r="2" fill="#b886b8"/>
+  <path d="M 22 50 Q 28 56 33 50" stroke="#b886b8" stroke-width="1"/>
+  <!-- Tragedy mask (right) -->
+  <path d="M 72 25 Q 62 25 62 40 Q 62 55 72 55 Q 82 55 82 40 Q 82 25 72 25 Z"
+        fill="rgba(184,134,184,0.1)" stroke="#b886b8" stroke-width="1.5"/>
+  <circle cx="67" cy="40" r="2" fill="#b886b8"/>
+  <circle cx="77" cy="40" r="2" fill="#b886b8"/>
+  <path d="M 67 52 Q 72 46 77 52" stroke="#b886b8" stroke-width="1"/>
+</svg>

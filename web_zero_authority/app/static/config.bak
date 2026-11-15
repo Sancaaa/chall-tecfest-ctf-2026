@@ -1,0 +1,13 @@
+"""
+config.py (backup)
+
+File ini dulunya menyimpan konfigurasi sebelum dipindah langsung ke
+app/__init__.py saat refactor terakhir.
+
+TODO: hapus file ini setelah migrasi selesai -- jangan biarkan
+tertinggal di static folder.
+"""
+
+SECRET_KEY = "zero-trust-demo-key"
+DEBUG = False
+DATABASE_PATH = "zero_authority.db"

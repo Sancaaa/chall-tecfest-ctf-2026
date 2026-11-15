@@ -1,0 +1,44 @@
+/* S6 Faceless: Silver/Grey / Mirror */
+.sequence-page.faceless-theme .challenge-container {
+  border-color: rgba(168, 168, 168, 0.2);
+}
+.sequence-page.faceless-theme .mirror-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(168, 168, 168, 0.03) 45%,
+    rgba(200, 200, 200, 0.06) 50%,
+    rgba(168, 168, 168, 0.03) 55%,
+    transparent 100%
+  );
+  background-size: 400% 100%;
+  animation: mirror-shimmer 6s linear infinite;
+}
+.sequence-page.faceless-theme .blurred-face {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  font-size: 3rem;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(2px);
+}
+.sequence-page.faceless-theme .auth-box {
+  max-width: 360px;
+  margin: 0 auto;
+}
+.sequence-page.faceless-theme .jwt-display {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  word-break: break-all;
+}

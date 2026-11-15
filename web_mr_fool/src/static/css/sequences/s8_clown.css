@@ -1,0 +1,41 @@
+/* S8 Clown: Magenta/Theatrical */
+.sequence-page.clown-theme .challenge-container {
+  border-color: rgba(184, 134, 184, 0.2);
+}
+.sequence-page.clown-theme .stage-curtains {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(90deg, rgba(160, 40, 120, 0.06) 0%, transparent 10%, transparent 90%, rgba(160, 40, 120, 0.06) 100%);
+  animation: curtain-sway 8s infinite;
+}
+.sequence-page.clown-theme .comedy-mask {
+  position: fixed;
+  top: 3rem;
+  left: 2rem;
+  font-size: 2rem;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+.sequence-page.clown-theme .tragedy-mask {
+  position: fixed;
+  top: 3rem;
+  right: 2rem;
+  font-size: 2rem;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+.sequence-page.clown-theme .error-output {
+  background: var(--bg-primary);
+  border: 1px solid var(--danger);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--danger-bright);
+  white-space: pre-wrap;
+  word-break: break-all;
+}

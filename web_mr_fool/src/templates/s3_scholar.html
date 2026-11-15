@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}S3: Scholar of Yore{% endblock %}
+{% block seq_id %}S3{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="/static/css/sequences/s3_scholar.css">{% endblock %}
+
+{% block content %}
+<div class="sequence-page scholar-theme">
+  <a href="/" class="back-link">Back to Cabinet</a>
+
+  <div class="scroll-bg"></div>
+  <div class="scroll-decoration">📜</div>
+
+  <div class="sequence-header">
+    <img src="/static/img/seq_scholar.svg" class="seq-emblem-img" alt="Scholar of Yore emblem">
+    <div class="sequence-number">SEQUENCE 3</div>
+    <div class="sequence-name">SCHOLAR OF YORE</div>
+  </div>
+
+  <div class="acting-principle">
+    <div class="principle-label">Acting Principle</div>
+    <div class="principle-quote">"Read what was written before the world began."</div>
+    <div class="principle-pathway">Pathway of the Scholar</div>
+  </div>
+ 
+  <div class="challenge-container">
+    <h3>Archive Viewer</h3>
+    <p>The archive lets you view ancient scrolls by filename. The oldest records are not listed, but the path is still there for those who can traverse history.</p>
+
+    <div class="scroll-selector">
+      <label for="scroll-name" style="margin-right:0.5rem;font-size:0.8rem;align-self:center;">Scroll Name / Path:</label>
+      <input type="text" id="scroll-name" value="scroll_of_truth.txt" style="flex:1;">
+      <button onclick="loadScroll()" style="padding:0.6rem 1.2rem;font-family:var(--font-heading);font-size:0.8rem;border:1px solid var(--seq-accent);border-radius:var(--radius);background:rgba(184,134,11,0.08);color:var(--seq-accent);cursor:pointer;">READ</button>
+    </div>
+
+    <div id="scroll-content" class="scroll-viewer">Select a scroll to read...</div>
+
+    <form class="solution-form" data-seq-id="S3" style="margin-top:1.5rem;">
+      <label for="answer">Potion Token:</label>
+      <input type="text" id="answer" name="answer" placeholder="Enter the Scholar's potion token..." required>
+      <button type="submit">DIGEST POTION</button>
+    </form>
+
+    <div class="feedback"></div>
+  </div>
+
+  <div class="digestion-section">
+    <div class="digestion-label">POTION DIGESTION</div>
+    <div class="digestion-bar">
+      <div class="digestion-fill" style="width: 0%"></div>
+    </div>
+  </div>
+</div>
+<!-- Archived secret scrolls are located at: ../secrets/lfi_token.txt -->
+{% endblock %}
+
+{% block extra_js %}
+<script>
+async function loadScroll() {
+  const scroll = document.getElementById('scroll-name').value;
+  const out = document.getElementById('scroll-content');
+  out.textContent = 'Loading...';
+  try {
+    const resp = await fetch('/s3/scholar/view?scroll=' + encodeURIComponent(scroll));
+    const r = await resp.json();
+    out.textContent = r.content || r.error || JSON.stringify(r, null, 2);
+  } catch (err) {
+    out.textContent = 'Error: ' + err.message;
+  }
+}
+</script>
+{% endblock %}

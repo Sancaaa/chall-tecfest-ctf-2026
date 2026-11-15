@@ -1,0 +1,5 @@
+%pf lo%p%png you %ps a s%pn %p'll gladly become a s%pnner
+
+https://www.youtube.com/watch?v=v1sd5CzR504
+
+`nc chall.tecfest.site 40201`

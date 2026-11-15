@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Arsip - Black Knights</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="frame wide">
+        <div class="panel">
+            <div class="top-nav">
+                <span>Peran aktif<span class="badge {{ 'zero' if role == 'zero' else '' }}">{{ role }}</span></span>
+                <span>
+                    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                    <a href="{{ url_for('logout') }}">Keluar</a>
+                </span>
+            </div>
+
+            <div class="mark"></div>
+            <h1>Arsip</h1>
+            <p class="subtitle">Catatan operasi jaringan</p>
+
+            <ul class="ledger">
+                {% for archive in archives %}
+                <li>
+                    <a href="{{ url_for('archive_detail', archive_id=archive['id']) }}">{{ archive['title'] }}</a>
+                    {% if archive['required_role'] == 'zero' %}
+                        <span class="stamp">zero clearance</span>
+                    {% else %}
+                        <span class="badge">{{ archive['required_role'] }}</span>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ archive['title'] }} - Black Knights</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="frame wide">
+        <div class="panel">
+            <div class="top-nav">
+                <span></span>
+                <span>
+                    <a href="{{ url_for('archives') }}">Kembali</a>
+                    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                </span>
+            </div>
+
+            <div class="mark"></div>
+            <h1>{{ archive['title'] }}</h1>
+            {% if archive['required_role'] == 'zero' %}
+                <p class="subtitle"><span class="stamp">zero clearance</span></p>
+            {% else %}
+                <p class="subtitle">{{ archive['required_role'] }}</p>
+            {% endif %}
+
+            {% if archive['required_role'] == 'zero' %}
+                <p class="seal">{{ archive['content'] }}</p>
+            {% else %}
+                <p>{{ archive['content'] }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

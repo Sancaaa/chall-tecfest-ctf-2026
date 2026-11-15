@@ -1,0 +1,28 @@
+# mavuika
+
+## Deskripsi peserta (CTFd)
+
+Program ini cuma minta satu baris input, lalu langsung keluar. Tenang, cuma itu kesempatanmu — pastikan kamu tahu betul kemana input itu berakhir. 64-bit, attachment binary disediakan.
+
+```
+nc <host> 40101
+```
+
+## Clue (hint CTFd — boleh dibuat cost-based, 1 hint saja)
+
+Ini ret2win klasik: cari fungsi yang isinya langsung kasih flag (no-PIE, alamatnya statis — bisa dibaca langsung dari attachment pakai `nm`/`objdump`), cari offset buffer-nya, timpa return address. Kalau belum pernah bikin exploit ret2win, baca dulu:
+- [PWN — Return to Win (ret2win) for Beginners](https://medium.com/@fahimalshihabifty/pwn-return-to-win-ret2win-binary-exponentiation-for-beginners-1de7e0fc85cc)
+
+**Kalau payload offset+alamat kamu sudah benar secara teori tapi binary tetap crash (SIGSEGV) pas lawan server asli (bukan pas tes lokal)** — itu bukan berarti exploit-mu salah konsep. Fungsi yang di-`ret` langsung (tanpa lewat instruksi `call` normal) bisa bikin RSP di dalam fungsi tujuan tidak lurus ke kelipatan 16-byte, dan sebagian operasi di dalamnya butuh itu. Coba selipkan **satu alamat instruksi `ret` polos** (cari gadget `ret` tunggal di binary yang sama) tepat sebelum alamat fungsi tujuan di payload-mu — itu menggeser stack 8 byte ekstra buat membenarkan alignment-nya.
+
+## Remote
+
+Direct connection: `nc <host> 40101`
+
+## Attachment peserta
+
+Upload `dist/mavuika_attachment.zip` sebagai Files di CTFd (isi: binary `mavuika` saja, protections: NX on, canary off, PIE off). Peserta perlu `chmod +x mavuika` setelah unzip (exec bit tidak terbawa lewat zip Windows).
+
+## Local run
+
+Run `docker compose up -d --build`, then connect with `nc 127.0.0.1 40101`.

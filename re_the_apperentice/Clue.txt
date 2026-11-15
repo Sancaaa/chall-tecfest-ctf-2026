@@ -1,0 +1,8 @@
+Clue1
+Binary ini dikompilasi dari Golang tanpa di-strip. Cari fungsi utama buatan developer seperti main.main dan main.executeVM di daftar simbol.
+
+Clue2
+Bytecode VM dan array target tidak dibangun saat runtime; keduanya tersimpan statis sebagai string literal di section .rodata.
+
+Clue3
+Setiap karakter input diproses secara independen oleh VM menggunakan XOR dengan byte konstanta lalu ditambah indeks posisinya. Kamu bisa membalikkan operasinya atau melakukan brute-force per karakter.

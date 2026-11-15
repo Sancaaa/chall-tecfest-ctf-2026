@@ -1,0 +1,17 @@
+# Port skema "K CC W I": Cryptography B (Viscous) = 10201.
+# Default bind ke IP Tailscale Homelab (100.105.142.39); override dengan BIND_IP=127.0.0.1 untuk tes lokal.
+services:
+  viscous:
+    build: .
+    container_name: tecfest-crypto-viscous
+    restart: unless-stopped
+    ports:
+      - "${BIND_IP:-100.105.142.39}:10201:10201"
+    environment:
+      - FLAG=TecFest26{bl0b_bl0b_p0ly}
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    pids_limit: 200
+    mem_limit: 256m
+    cpus: 0.5

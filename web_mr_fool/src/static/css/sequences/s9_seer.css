@@ -1,0 +1,30 @@
+/* S9 Seer: Spectral Cyan / Starfield */
+.sequence-page.seer-theme .challenge-container {
+  border-color: rgba(26, 139, 139, 0.2);
+}
+.sequence-page.seer-theme .watching-eye {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  font-size: 2.5rem;
+  opacity: 0.15;
+  animation: eye-blink 6s infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+.sequence-page.seer-theme .observation-log {
+  background: rgba(26, 139, 139, 0.04);
+  border: 1px solid rgba(26, 139, 139, 0.15);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+.sequence-page.seer-theme .observation-log .log-entry {
+  padding: 0.2rem 0;
+  border-bottom: 1px solid rgba(26, 139, 139, 0.1);
+}
+.sequence-page.seer-theme .observation-log .log-entry .key {
+  color: var(--accent);
+}

@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}API Connection Tester - RelayDesk{% endblock %}
+
+{% block content %}
+<section>
+  <h1>API Connection Tester</h1>
+  <p class="lead">
+    Test service availability and cross-subnet connectivity by relaying HTTP requests through the RelayDesk gateway. Inspect HTTP status codes, response headers, and raw payload data.
+  </p>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Request Configuration</h2>
+      <span class="status-pill">
+        <span class="status-dot success"></span>
+        Proxy Ready
+      </span>
+    </div>
+
+    <form id="tester-form">
+      <div class="form-group">
+        <label class="form-label" for="selected-method">HTTP Method</label>
+        <div class="method-group">
+          <button type="button" class="method-btn active" data-method="GET" aria-label="Select GET method">GET</button>
+          <button type="button" class="method-btn" data-method="POST" aria-label="Select POST method">POST</button>
+        </div>
+        <input type="hidden" id="selected-method" value="GET">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="target-url">Target Endpoint URL</label>
+        <input
+          type="text"
+          id="target-url"
+          class="form-control form-control-mono"
+          placeholder="http://archive-api.svc.local:8081/"
+          required
+          aria-required="true"
+        >
+        <div class="form-hint">
+          Supported schemes: <code>http://</code> and <code>https://</code>. Specify full hostname or cluster DNS alias with port.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+          <label class="form-label" style="margin-bottom: 0;">HTTP Headers</label>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button type="button" id="btn-preset-json" class="btn btn-secondary btn-sm" aria-label="Add Content-Type application/json header">
+              + JSON Content-Type
+            </button>
+            <button type="button" id="btn-preset-auth" class="btn btn-secondary btn-sm" aria-label="Add Authorization header">
+              + Authorization Header
+            </button>
+            <button type="button" id="btn-add-header" class="btn btn-secondary btn-sm" aria-label="Add custom header row">
+              + Custom Header
+            </button>
+          </div>
+        </div>
+        <div id="headers-container">
+          <!-- Dynamic header rows will be inserted here -->
+        </div>
+        <div class="form-hint">
+          Define headers to be forwarded with the request, such as Content-Type, Accept, or Authorization tokens.
+        </div>
+      </div>
+
+      <div class="form-group" id="body-group">
+        <label class="form-label" for="request-body">Request Body (Raw Payload)</label>
+        <textarea
+          id="request-body"
+          class="form-control form-control-mono"
+          rows="5"
+          placeholder='{"username": "admin", "password": "password"}'
+        ></textarea>
+        <div class="form-hint">
+          Raw text or JSON payload forwarded to the target endpoint for POST operations.
+        </div>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <button type="submit" class="btn btn-primary" id="btn-submit-request">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          Execute Request
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div id="response-inspector" class="response-inspector">
+    <div class="card">
+      <div class="empty-state">
+        <svg class="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+          <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+          <line x1="6" y1="6" x2="6.01" y2="6"></line>
+          <line x1="6" y1="18" x2="6.01" y2="18"></line>
+        </svg>
+        <h3>No Request Sent Yet</h3>
+        <p class="form-hint" style="max-width: 440px; margin: 0.5rem auto 0;">
+          Configure a target endpoint URL and required parameters above, then click Execute Request to inspect live transport data.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/tester.js"></script>
+{% endblock %}
+

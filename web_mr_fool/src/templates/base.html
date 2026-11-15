@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mr.Fool : {% block title %}{% endblock %}</title>
+  <link rel="icon" type="image/svg+xml" href="/static/img/favicon.svg">
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/animations.css">
+  <link rel="stylesheet" href="/static/css/dashboard.css">
+  <link rel="stylesheet" href="/static/css/sequence.css">
+  {% block extra_css %}{% endblock %}
+  <style>
+    /* inline critical styles */
+    :root {
+      --corruption: {{ completion_count / 5 if completion_count else 0 }};
+    }
+  </style>
+</head>
+<body data-completed="{{ completion_count }}" data-sequence="{% block seq_id %}dashboard{% endblock %}">
+
+  <!-- Corruption vignette -->
+  <div class="corruption-vignette"></div>
+
+  <!-- Atmospheric background (gears, eye motif) -->
+  <img src="/static/img/atmosphere_bg.svg" class="atmosphere-bg" alt="" aria-hidden="true">
+
+  <!-- Starfield background -->
+  <div class="starfield"></div>
+
+  <!-- Pathway Navigation Bar -->
+  <nav class="pathway-bar">
+    <a href="/" class="pathway-home">Mr.Fool</a>
+    <div class="pathway-slots">
+      {% for seq_id, seq_name, seq_icon in sequences %}
+      <div class="pathway-slot
+        {{ 'completed' if seq_id in completed_seq else '' }}
+        {{ 'current' if seq_id == current_seq else '' }}
+        {{ 'locked' if seq_id not in completed_seq and seq_id != current_seq else '' }}">
+        <span class="slot-number">{{ seq_id }}</span>
+        <span class="slot-icon">{{ seq_icon }}</span>
+      </div>
+      {% endfor %}
+
+      <div class="fool-slot {{ 'active' if all_completed else '' }}" title="{% if all_completed %}The Fool awaits{% else %}{{ 5 - (completed_seq|length) }} Sequences remaining{% endif %}">
+        {% if all_completed %}<a href="/s0/fool" style="color:var(--gold);text-decoration:none;">🃏</a>{% else %}🃏{% endif %}
+      </div>
+    </div>
+    <div class="madness-meter" title="Corruption risk: {{ (completion_count / 5 * 100)|int if completion_count else 0 }}%">
+      <span class="madness-label">CORRUPTION</span>
+      <div class="madness-bar">
+        <div class="madness-fill" style="width: {{ (completion_count / 5 * 100)|int if completion_count else 0 }}%"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <span>Potions digested: {{ completion_count }} / 5</span>
+    <a href="/reset" class="reset-link" onclick="return confirmReset()">[RESET PATHWAY]</a>
+  </footer>
+
+  <script src="/static/js/dashboard.js"></script>
+  <script src="/static/js/sequence.js"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

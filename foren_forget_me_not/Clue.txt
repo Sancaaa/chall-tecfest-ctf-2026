@@ -1,0 +1,16 @@
+Clue1
+Not every call on that line was a voice call.
+
+Clue2
+Sometimes a protocol sends the same data more than once, on purpose.
+
+Clue3
+Order packets by what they say, not by when they arrived.
+
+--------------------------------------
+
+Clue4
+A page that was sent is not necessarily a page that was accepted.
+
+Clue5
+The gateway’s own logs explain how the archive is sealed.

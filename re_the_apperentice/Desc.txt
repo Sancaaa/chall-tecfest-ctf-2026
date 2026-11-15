@@ -1,0 +1,3 @@
+Seorang penyihir magang menemukan sebuah grimoire kuno dalam bentuk binary Golang. Katanya, mantra di dalamnya dilindungi oleh sebuah mesin virtual mini yang hanya menerima satu kalimat sihir yang tepat.
+
+Jika mantranya benar, program akan menjawab `"The spell holds!"`. Jika salah, `"The spell fizzles."`. Bisakah kamu membaca cara kerja mesin virtual tersebut dan menemukan mantra yang benar?

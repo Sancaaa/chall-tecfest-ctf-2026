@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Networking Configuration Guide - RelayDesk{% endblock %}
+
+{% block content %}
+<section>
+  <h1>Networking Configuration Guide</h1>
+  <p class="lead">
+    Architecture documentation for internal cluster communication, DNS resolution patterns, and service port allocations within the private VPC.
+  </p>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Internal DNS Resolution Standard</h2>
+      <span class="status-pill">
+        <span class="status-dot info"></span>
+        VPC Zone: *.svc.local
+      </span>
+    </div>
+    <p style="margin-bottom: 1rem; color: var(--color-text-secondary);">
+      In order to prevent exposure to external networks, all private microservices inside the cluster communicate through dedicated internal Docker networks. Namespaces are resolved automatically using the private DNS zone format:
+    </p>
+    <div class="code-block">
+      &lt;service-alias&gt;.svc.local
+    </div>
+    <p style="margin-top: 1rem; color: var(--color-text-secondary);">
+      For example, a service registered under the alias <code>example-svc</code> in the service catalog resolves internally to <code>example-svc.svc.local</code>.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Standard Service Port Allocations</h2>
+      <span class="status-pill">
+        <span class="status-dot warning"></span>
+        Internal Routing Table
+      </span>
+    </div>
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Service Scope</th>
+            <th>Service Purpose</th>
+            <th>Assigned Port</th>
+            <th>Network Accessibility</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>relaydesk-web</code></td>
+            <td>Operator Public Web Ingress</td>
+            <td><code>3000</code></td>
+            <td>Edge / Public Internet</td>
+          </tr>
+          <tr>
+            <td><code>archive-api</code></td>
+            <td>Internal Document Archive & Audit Storage</td>
+            <td><code>8081</code></td>
+            <td>VPC-Private Only (*.svc.local)</td>
+          </tr>
+          <tr>
+            <td><code>auth-gateway</code></td>
+            <td>Identity Management Service</td>
+            <td><code>8080</code></td>
+            <td>VPC-Private Only (*.svc.local)</td>
+          </tr>
+          <tr>
+            <td><code>event-relay</code></td>
+            <td>Message Broker & Telemetry</td>
+            <td><code>9090</code></td>
+            <td>VPC-Private Only (*.svc.local)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Testing Private Endpoints</h2>
+      <span class="status-pill">
+        <span class="status-dot success"></span>
+        Diagnostic Method
+      </span>
+    </div>
+    <p style="color: var(--color-text-secondary); margin-bottom: 1rem;">
+      Because internal microservices do not publish ports to the public host or reverse proxy, operators must use the built-in <a href="/tools/connection">API Connection Tester</a> to send diagnostic requests from within the gateway network.
+    </p>
+    <p style="color: var(--color-text-secondary); margin-bottom: 1rem;">
+      Construct target URLs using the internal hostname and port:
+    </p>
+    <div class="code-block">
+      http://&lt;service-alias&gt;.svc.local:&lt;port&gt;/
+    </div>
+    <p style="color: var(--color-text-secondary);">
+      The proxy forwards your request, including any configured custom HTTP headers and JSON bodies, and displays the complete raw response for analysis.
+    </p>
+  </div>
+</section>
+{% endblock %}
+

@@ -1,0 +1,19 @@
+services:
+  sandrone:
+    build: .
+    image: pwn_sandrone
+    restart: unless-stopped
+    ports:
+      - "${BIND_IP:-100.105.142.39}:40301:40301"
+    volumes:
+      - ./flag.txt:/home/sandrone_pwn/flag.txt:ro
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 64
+    mem_limit: 128m
+    cpus: 0.5
+    ulimits:
+      core: 0

@@ -1,0 +1,786 @@
+:root {
+  --bg-obsidian: #08080A;
+  --bg-surface: #121216;
+  --bg-panel: #19191F;
+  --crimson-primary: #C80010;
+  --crimson-bright: #E60012;
+  --crimson-deep: #780008;
+  --gold-accent: #F5B700;
+  --ink-white: #FAFAFA;
+  --ink-muted: #B4B4BE;
+  --ink-black: #08080A;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg-obsidian);
+  color: var(--ink-white);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  line-height: 1.45;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.bg-slashes {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(125deg, #160205 0%, #08080A 45%, #1A0206 100%);
+  background-size: cover;
+}
+
+.bg-slashes::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.14;
+  background-image: repeating-linear-gradient(
+    -24deg,
+    #E60012 0px,
+    #E60012 3px,
+    transparent 3px,
+    transparent 42px
+  );
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+label:has(input:focus-visible) {
+  outline: 3px solid var(--gold-accent);
+  outline-offset: 3px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Header HUD */
+.hud-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 24px;
+  background: #0D0D10;
+  border-bottom: 4px solid var(--crimson-bright);
+  box-shadow: 0 6px 0 #000000;
+}
+
+.brand-ribbon {
+  display: inline-block;
+  background: var(--crimson-primary);
+  color: var(--ink-white);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 2px 10px;
+  transform: skewX(-10deg);
+}
+
+.brand-title {
+  margin: 4px 0 0;
+  font-family: "Saira Extra Condensed", sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  line-height: 0.95;
+  text-transform: uppercase;
+  text-shadow: 3px 3px 0 var(--crimson-bright);
+}
+
+.hud-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.stat-pill {
+  background: var(--bg-panel);
+  border: 2px solid var(--ink-white);
+  box-shadow: 4px 4px 0 var(--crimson-bright);
+  padding: 6px 14px;
+  transform: skewX(-8deg);
+  display: flex;
+  flex-direction: column;
+  min-width: 112px;
+}
+
+.stat-pill > span {
+  transform: skewX(8deg);
+}
+
+.stat-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: var(--ink-muted);
+  letter-spacing: 1px;
+}
+
+.stat-value {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink-white);
+}
+
+.stat-gold {
+  color: var(--gold-accent);
+}
+
+.stat-crimson {
+  color: #FF4D5A;
+}
+
+.hud-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Persona 5 Buttons */
+.btn-p5 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 3px solid var(--ink-white);
+  font-family: "Saira Extra Condensed", sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transform: skewX(-8deg);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+  box-shadow: 4px 4px 0 #000000;
+}
+
+.btn-p5 > * {
+  transform: skewX(8deg);
+}
+
+.btn-p5:hover:not(:disabled) {
+  transform: skewX(-8deg) translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--crimson-bright);
+}
+
+.btn-p5:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-crimson {
+  background: var(--crimson-primary);
+  color: var(--ink-white);
+}
+
+.btn-white {
+  background: var(--ink-white);
+  color: var(--ink-black);
+  border-color: var(--ink-black);
+  box-shadow: 4px 4px 0 var(--crimson-bright);
+}
+
+.btn-dark {
+  background: var(--bg-panel);
+  color: var(--ink-white);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-white);
+}
+
+.btn-muted {
+  background: #27272F;
+  color: var(--ink-white);
+}
+
+/* Arena Main Layout */
+.arena {
+  max-width: 1240px;
+  margin: 22px auto;
+  padding: 0 20px 32px;
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.dealer-panel,
+.table-panel {
+  background: var(--bg-surface);
+  border: 3px solid var(--ink-white);
+  box-shadow: 8px 8px 0 var(--crimson-primary);
+  padding: 18px;
+}
+
+.dealer-stage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.dealer-portrait svg {
+  display: block;
+  width: 210px;
+  height: auto;
+}
+
+.sweat-drop {
+  opacity: 0;
+}
+
+.dealer-portrait.mood-sweating .sweat-drop,
+.dealer-portrait.mood-panicking .sweat-drop,
+.dealer-portrait.mood-cornered .sweat-drop {
+  opacity: 1;
+}
+
+.dealer-portrait.mood-panicking .dealer-mouth,
+.dealer-portrait.mood-cornered .dealer-mouth {
+  d: path("M112 114 Q130 102 148 114");
+}
+
+.dealer-portrait.mood-broken {
+  filter: grayscale(0.4) contrast(1.2);
+}
+
+.dealer-portrait.mood-broken .dealer-mouth {
+  d: path("M112 116 Q130 98 148 116");
+}
+
+.dealer-cards-box {
+  flex: 1;
+  min-width: 180px;
+}
+
+.section-tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--ink-muted);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rank-chip {
+  background: var(--crimson-primary);
+  color: var(--ink-white);
+  padding: 2px 8px;
+  font-size: 11px;
+}
+
+.rank-chip:empty {
+  display: none;
+}
+
+/* Dialogue Box */
+.dialogue-box {
+  margin-top: 16px;
+  background: #08080A;
+  border: 3px solid var(--ink-white);
+  padding: 16px 18px;
+  position: relative;
+}
+
+.speaker-tag {
+  display: inline-block;
+  background: var(--ink-white);
+  color: var(--ink-black);
+  font-family: "Saira Extra Condensed", sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  padding: 2px 12px;
+  transform: skewX(-10deg);
+  margin-bottom: 8px;
+  border: 2px solid var(--crimson-bright);
+}
+
+.dialogue-text {
+  margin: 0;
+  font-size: 15px;
+  color: var(--ink-white);
+}
+
+/* Poker Table */
+.table-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #2C2C35;
+}
+
+.street-badge {
+  background: var(--crimson-primary);
+  color: var(--ink-white);
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 4px 12px;
+  transform: skewX(-8deg);
+}
+
+.pot-badge,
+.hands-count {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.pot-badge span {
+  color: var(--gold-accent);
+}
+
+.board-zone {
+  margin-top: 16px;
+  padding: 16px;
+  background:
+    radial-gradient(circle at center, #2B0409 0%, #110305 100%);
+  border: 2px solid #591119;
+}
+
+.cards-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 98px;
+  align-items: center;
+}
+
+.card-tile {
+  width: 66px;
+  height: 96px;
+  background: var(--ink-white);
+  color: var(--ink-black);
+  border: 3px solid var(--ink-black);
+  box-shadow: 4px 4px 0 #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+}
+
+.card-tile.suit-red {
+  color: var(--crimson-primary);
+}
+
+.card-tile.card-back {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #14141A,
+      #14141A 6px,
+      #C80010 6px,
+      #C80010 12px
+    );
+  border-color: var(--ink-white);
+  justify-content: center;
+  align-items: center;
+  color: var(--ink-white);
+  font-size: 22px;
+}
+
+.card-tile.card-slot {
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px dashed #4B4B57;
+  box-shadow: none;
+}
+
+.card-rank {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.card-suit {
+  align-self: center;
+}
+
+.player-zone {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+.result-banner {
+  padding: 10px 16px;
+  font-family: "Saira Extra Condensed", sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 3px solid var(--ink-white);
+  transform: skewX(-6deg);
+}
+
+.result-banner.win {
+  background: var(--gold-accent);
+  color: var(--ink-black);
+}
+
+.result-banner.loss,
+.result-banner.fold {
+  background: var(--crimson-primary);
+  color: var(--ink-white);
+}
+
+.result-banner.tie {
+  background: #3B3B48;
+  color: var(--ink-white);
+}
+
+.command-bar {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.command-bar .btn-p5 {
+  font-size: 20px;
+  padding: 10px 8px;
+}
+
+/* Modals */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 8, 0.86);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 50;
+  overflow-y: auto;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 780px;
+  background: var(--bg-surface);
+  border: 4px solid var(--ink-white);
+  box-shadow: 10px 10px 0 var(--crimson-bright);
+  padding: 22px;
+  max-height: 92vh;
+  overflow-y: auto;
+}
+
+.modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  border-bottom: 3px solid var(--crimson-bright);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.modal-head h2 {
+  margin: 0;
+  font-family: "Saira Extra Condensed", sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.btn-close {
+  background: var(--ink-white);
+  color: var(--ink-black);
+  border: 3px solid var(--ink-black);
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.dossier-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 20px;
+}
+
+.dossier-col h3 {
+  margin: 0 0 8px;
+  font-family: "Saira Extra Condensed", sans-serif;
+  font-size: 24px;
+  color: var(--gold-accent);
+}
+
+.dossier-list {
+  margin: 0 0 16px;
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+.dossier-list li {
+  margin-bottom: 6px;
+}
+
+.dossier-note {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+
+.dealer-badge-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.badge-caption {
+  margin: 8px 0 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+/* Confrontation Overlay */
+.holdup-stamp {
+  display: inline-block;
+  background: var(--crimson-primary);
+  color: var(--ink-white);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  transform: skewX(-10deg);
+  margin-bottom: 6px;
+}
+
+.confront-meters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.meter-block {
+  flex: 1;
+  min-width: 220px;
+}
+
+.meter-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.meter-track {
+  height: 16px;
+  background: #08080A;
+  border: 2px solid var(--ink-white);
+}
+
+.meter-fill {
+  height: 100%;
+  background: var(--crimson-bright);
+  transition: width 0.25s ease;
+}
+
+.strike-block {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 14px;
+  background: #08080A;
+  border: 2px solid var(--gold-accent);
+  color: var(--gold-accent);
+  padding: 8px 12px;
+}
+
+.confront-quote-box {
+  background: #08080A;
+  border: 3px solid var(--ink-white);
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+
+.confront-quote-box p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.confront-feedback {
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  font-weight: 700;
+  font-size: 14px;
+  border: 2px solid var(--ink-white);
+}
+
+.confront-feedback.hit {
+  background: #14532D;
+  color: var(--ink-white);
+}
+
+.confront-feedback.miss {
+  background: var(--crimson-deep);
+  color: var(--ink-white);
+}
+
+.tactics-fieldset {
+  border: 2px solid #3F3F4C;
+  padding: 12px;
+  margin: 0 0 14px;
+}
+
+.tactics-fieldset legend {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-accent);
+  padding: 0 6px;
+}
+
+.tactics-list {
+  display: grid;
+  gap: 8px;
+}
+
+.tactic-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--bg-panel);
+  border: 2px solid #4A4A57;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tactic-option:has(input:checked) {
+  border-color: var(--crimson-bright);
+  background: #2A080C;
+}
+
+.evidence-group label {
+  display: block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-accent);
+  margin-bottom: 6px;
+}
+
+.evidence-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.evidence-row input {
+  flex: 1;
+  min-width: 220px;
+  background: #08080A;
+  color: var(--ink-white);
+  border: 3px solid var(--ink-white);
+  padding: 10px 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+}
+
+/* Victory Modal */
+.victory-card {
+  max-width: 640px;
+  text-align: left;
+}
+
+.victory-card h2 {
+  margin: 4px 0 8px;
+  font-family: "Saira Extra Condensed", sans-serif;
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--gold-accent);
+}
+
+.victory-sub {
+  margin: 0 0 12px;
+  font-weight: 700;
+}
+
+.victory-quote {
+  margin: 0 0 16px;
+  padding: 12px;
+  background: #08080A;
+  border-left: 4px solid var(--crimson-bright);
+  font-size: 14px;
+}
+
+.flag-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #08080A;
+  border: 3px solid var(--gold-accent);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+
+.flag-box code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold-accent);
+  word-break: break-all;
+}
+
+@media (max-width: 960px) {
+  .arena {
+    grid-template-columns: 1fr;
+  }
+  .dossier-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .command-bar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .brand-title {
+    font-size: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-p5,
+  .meter-fill {
+    transition: none;
+  }
+  .btn-p5:hover:not(:disabled) {
+    transform: skewX(-8deg);
+  }
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100" fill="none">
+  <!-- Bottle neck -->
+  <rect x="50" y="5" width="20" height="14" rx="2" stroke="#c9a84c" stroke-width="2" fill="rgba(20,20,43,0.6)"/>
+  <!-- Cork -->
+  <rect x="52" y="0" width="16" height="6" rx="2" fill="#c9a84c"/>
+  <!-- Bottle body -->
+  <path d="M40 20 Q30 25 30 35 L30 80 Q30 92 42 92 L78 92 Q90 92 90 80 L90 35 Q90 25 80 20 Z"
+        stroke="#c9a84c" stroke-width="2" fill="rgba(20,20,43,0.4)"/>
+  <!-- Liquid -->
+  <path d="M32 50 Q32 90 42 90 L78 90 Q88 90 88 50 Z" fill="url(#liquid-grad)" opacity="0.8"/>
+  <!-- Glint -->
+  <ellipse cx="44" cy="40" rx="3" ry="12" fill="rgba(255,255,255,0.15)"/>
+  <defs>
+    <linearGradient id="liquid-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#e6a817" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+</svg>

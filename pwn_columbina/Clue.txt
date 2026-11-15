@@ -1,0 +1,9 @@
+Clue1
+Heap Hop 
+
+clue2
+https://research.checkpoint.com/2020/safe-linking-eliminating-a-20-year-old-malloc-exploit-primitive/
+
+---
+clue3
+Tcache poisoning https://ir0nstone.gitbook.io/notes/types/heap/safe-linking

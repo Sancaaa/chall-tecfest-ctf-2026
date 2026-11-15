@@ -1,0 +1,33 @@
+name: "All-in Or Nothing"
+author: "TecFest CTF Committee"
+category: "misc"
+
+description: |
+  Selamat datang di **Velvet Palace — VIP Room 777**.
+  Di balik meja beludru merah dan hitam ini duduk sang dealer angkuh, **Reynaldi "The Velvet King" Pratama**.
+
+  Aturan meja ini cuma satu: menangkan **10 ronde poker berturut-turut** tanpa kalah atau mundur (*All-in Or Nothing*), maka isi brankas—dan flag—menjadi milikmu.
+  Tapi benarkah seorang pria yang khotbah soal "kehormatan penjudi" itu benar-benar bersih? Kalau peluang 10 kemenangan beruntun terasa mustahil, cari tahu siapa dia sebenarnya... dan paksa dia menyerah.
+
+  {URL}
+
+type: "DynamicService"
+value: 500
+
+flags:
+  - "TecFest26{jud1_4d4l4h_j4l4n_n1nj4_ku}"
+
+tags:
+  - misc
+  - web
+  - osint
+  - poker
+  - narrative
+
+hints:
+  - "Jika keberuntungan 10x beruntun terasa mustahil, periksa bagaimana kasino ini berjalan: cek /robots.txt, lalu lintas API meja (/api/table/state), serta aset lencana resmi sang dealer."
+  - "Beberapa catatan internal dealer tersimpan dalam encoding klasik (Base64, ROT13, dan Hex). Kumpulkan 4 kode bukti lalu tekan mental Reynaldi melalui tombol HOLD UP!"
+
+scripts:
+  start: cd src && docker compose -p {{ .slug }} up --build -d
+  stop: cd src && docker compose -p {{ .slug }} down --volumes

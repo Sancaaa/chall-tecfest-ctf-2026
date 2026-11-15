@@ -1,0 +1,294 @@
+/* Potion cabinet and progression dashboard styles. */
+
+.cabinet {
+  text-align: center;
+  padding: 1rem 0 2rem;
+}
+
+/* Fool Tarot hero */
+.fool-tarot-hero {
+  margin-bottom: 2rem;
+  animation: fade-in-up 0.8s ease-out both;
+}
+.tarot-card-img {
+  width: 200px;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(201,168,76,0.2));
+  transition: filter 0.6s;
+}
+.tarot-card-img:hover {
+  filter: drop-shadow(0 0 32px rgba(201,168,76,0.4));
+}
+.tarot-card-caption {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.2em;
+  margin-top: 0.4rem;
+}
+
+.cabinet-title {
+  font-size: 2.5rem;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  margin-bottom: 0.5rem;
+  text-shadow: var(--gold-glow);
+}
+
+.cabinet-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin-bottom: 3rem;
+  letter-spacing: 0.05em;
+}
+
+.potion-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+}
+
+.potion-bottle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  transition: var(--transition);
+  position: relative;
+  animation: fade-in-up 0.5s ease-out both;
+
+  /* bottle sizing */
+  width: 80px;
+}
+
+.potion-bottle:nth-child(1) { animation-delay: 0.05s; }
+.potion-bottle:nth-child(2) { animation-delay: 0.1s; }
+.potion-bottle:nth-child(3) { animation-delay: 0.15s; }
+.potion-bottle:nth-child(4) { animation-delay: 0.2s; }
+.potion-bottle:nth-child(5) { animation-delay: 0.25s; }
+
+/* ---- Bottle glass ---- */
+.bottle-glass {
+  width: 48px;
+  height: 72px;
+  background: rgba(20, 20, 43, 0.6);
+  border: 2px solid var(--text-dim);
+  border-radius: 8px 8px 6px 6px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+/* bottle neck */
+.bottle-glass::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 14px;
+  background: rgba(20, 20, 43, 0.6);
+  border: 2px solid var(--text-dim);
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+}
+
+/* bottle liquid */
+.bottle-liquid {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0%;
+  background: linear-gradient(180deg, transparent 0%, rgba(201, 168, 76, 0.3) 10%, var(--gold) 100%);
+  transition: height 1.5s ease-out;
+}
+
+/* emblem inside bottle */
+.bottle-emblem {
+  position: absolute;
+  inset: 8px 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 16px);
+  object-fit: contain;
+  opacity: 0.45;
+  z-index: 2;
+  filter: grayscale(1) opacity(0.7);
+  transition: var(--transition);
+}
+.potion-bottle.completed .bottle-emblem,
+.potion-bottle.current .bottle-emblem {
+  filter: none;
+  opacity: 0.95;
+}
+.potion-bottle.completed:hover .bottle-emblem,
+.potion-bottle.current:hover .bottle-emblem {
+  transform: scale(1.08);
+}
+
+/* bottle glint */
+.bottle-glint {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 4px;
+  height: 30px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  border-radius: 50%;
+  animation: bottle-glint 3s ease-in-out infinite;
+}
+
+/* ---- Bottle states ---- */
+
+/* Completed */
+.potion-bottle.completed {
+  cursor: pointer;
+}
+.potion-bottle.completed .bottle-glass {
+  border-color: var(--gold);
+  box-shadow: var(--gold-glow);
+}
+.potion-bottle.completed .bottle-glass::before {
+  border-color: var(--gold);
+}
+.potion-bottle.completed .bottle-liquid {
+  height: 100%;
+}
+.potion-bottle.completed:hover .bottle-glass {
+  box-shadow: var(--gold-glow-strong);
+  transform: translateY(-4px) scale(1.05);
+}
+
+/* Current */
+.potion-bottle.current {
+  cursor: pointer;
+}
+.potion-bottle.current .bottle-glass {
+  border-color: var(--gold-bright);
+  box-shadow: var(--gold-glow-strong);
+  animation: slot-pulse 2s infinite;
+}
+.potion-bottle.current .bottle-glass::before {
+  border-color: var(--gold-bright);
+}
+.potion-bottle.current:hover .bottle-glass {
+  transform: translateY(-4px) scale(1.05);
+}
+
+/* Locked */
+.potion-bottle.locked {
+  cursor: not-allowed;
+  opacity: 0.35;
+  filter: saturate(0.2);
+}
+.potion-bottle.locked .bottle-glass {
+  border-color: var(--text-dim);
+}
+.potion-bottle.locked .bottle-glass::before {
+  border-color: var(--text-dim);
+}
+
+/* ---- bottle labels ---- */
+.bottle-icon {
+  font-size: 1.2rem;
+  margin-top: 0.75rem;
+  display: block;
+  filter: opacity(0.5);
+}
+.potion-bottle.completed .bottle-icon,
+.potion-bottle.current .bottle-icon {
+  filter: none;
+}
+
+.bottle-label {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-top: 0.3rem;
+  font-weight: 700;
+}
+.potion-bottle.completed .bottle-label {
+  color: var(--gold);
+}
+.potion-bottle.current .bottle-label {
+  color: var(--gold-bright);
+}
+
+.bottle-name {
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  margin-top: 0.15rem;
+  letter-spacing: 0.05em;
+}
+.potion-bottle.completed .bottle-name {
+  color: var(--text);
+}
+.potion-bottle.current .bottle-name {
+  color: var(--text-bright);
+}
+
+/* ---- Current challenge card ---- */
+.current-challenge-card,
+.completion-card {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  box-shadow: var(--gold-glow);
+  text-align: center;
+  animation: fade-in-up 0.6s ease-out both;
+  animation-delay: 0.5s;
+}
+
+.current-challenge-card .card-header,
+.completion-card .card-header {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.current-challenge-card .card-quote {
+  font-style: italic;
+  color: var(--text-dim);
+  margin-bottom: 1.5rem;
+}
+
+.completion-card .card-header {
+  color: var(--text-bright);
+  font-size: 1.1rem;
+}
+
+/* ---- Tooltip ---- */
+.potion-bottle.locked::after {
+  content: '🔒';
+  position: absolute;
+  top: -6px;
+  right: -4px;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* ---- S0 Fool slot ---- */
+.fool-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  font-size: 2rem;
+  opacity: 0.3;
+  transition: var(--transition);
+}
+.fool-slot.active {
+  opacity: 1;
+  animation: slot-pulse 3s infinite;
+}

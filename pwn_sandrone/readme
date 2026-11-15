@@ -1,0 +1,19 @@
+# sandrone
+
+(deskripsi peserta belum ditulis — placeholder, isi manual sebelum lomba)
+
+## Teknik (revisi 14 Nov)
+
+Shellcode injection (NX off) + **badchar-free XOR payload encoding** — lihat `NOTES.md` bagian "Revisi besar" dan `WRITEUP.md` buat detail lengkap + rujukan paper. Dua channel: "payload diagnostik" (disanitasi, strcpy/fgets, badchar natural 0x00/0x0a) buat shellcode terenkode, "kontrol overflow" (raw read, tidak disanitasi) buat overwrite return address.
+
+## Remote
+
+Direct connection: `nc <host> 40301`
+
+## Attachment peserta
+
+Upload `dist/sandrone_attachment.zip` sebagai Files di CTFd (isi: binary `sandrone` saja, protections: NX off, canary off, PIE off). Peserta perlu `chmod +x sandrone` setelah unzip (exec bit tidak terbawa lewat zip Windows).
+
+## Local run
+
+Build ulang via `deploy_pwn.sh` (WAJIB dari WSL, lihat NOTES.md "Cara test ulang"), lalu connect dengan `nc 127.0.0.1 40301`.

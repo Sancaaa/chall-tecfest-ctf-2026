@@ -1,0 +1,16 @@
+Clue1
+While an app is running, the main database file isn’t the whole story.
+
+Clue2
+A write-ahead log remembers more than the file it belongs to.
+
+Clue3
+Only what was committed really happened.
+
+--------------------------------------
+
+Clue4
+The latest state doesn’t necessarily hold the last accepted content.
+
+Clue5
+Keys rotate. Take everything from the same moment in time.

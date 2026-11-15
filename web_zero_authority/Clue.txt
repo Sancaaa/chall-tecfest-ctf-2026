@@ -1,0 +1,2 @@
+Hint 1: Zero selalu berkata: jejak masa lalu tidak pernah benar-benar hilang, bahkan yang seharusnya sudah dimusnahkan developer sebelum sebuah proyek rahasia diluncurkan.
+Hint 2: Setiap anggota Black Knights yang andal membawa daftar nama rahasia miliknya sendiri. Di dunia nyata, daftar itu punya nama: SecLists. Namun ingat, tidak semua daftar diciptakan sama. Carilah kategori yang menyimpan “kata”, bukan yang menyimpan “berkas” yang sudah utuh.

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Potion Cabinet{% endblock %}
+{% block seq_id %}dashboard{% endblock %}
+
+{% block content %}
+<div class="cabinet">
+  <!-- Fool Tarot hero image -->
+  <div class="fool-tarot-hero">
+    <img src="/static/img/fool_tarot.svg" alt="The Fool Tarot Card" class="tarot-card-img">
+    <div class="tarot-card-caption">Sequence 0: Above the Sequence</div>
+  </div>
+
+  <h1 class="cabinet-title">POTION CABINET</h1>
+  <p class="cabinet-subtitle">Each Sequence must be digested before the next may be attempted. There are no shortcuts on the Pathway.</p>
+
+  <div class="potion-grid">
+    {% for seq_id, seq_name, seq_icon in sequences %}
+    <a href="{{ seq_urls[seq_id] }}"
+       class="potion-bottle
+         {{ 'completed' if seq_id in completed_seq else '' }}
+         {{ 'current' if seq_id == current_seq else '' }}
+         {{ 'locked' if seq_id not in completed_seq and seq_id != current_seq else '' }}"
+       {% if seq_id not in completed_seq and seq_id != current_seq %}aria-disabled="true" onclick="return false"{% endif %}>
+      <div class="bottle-glass">
+        <img src="/static/img/seq_{{ seq_emblems[seq_id] }}.svg" class="bottle-emblem" alt="">
+        <div class="bottle-liquid" style="height: {{ '100%' if seq_id in completed_seq else '0%' }}"></div>
+        <div class="bottle-glint"></div>
+      </div>
+      <span class="bottle-icon">{{ seq_icon }}</span>
+      <span class="bottle-label">{{ seq_id }}</span>
+      <span class="bottle-name">{{ seq_name }}</span>
+    </a>
+    {% endfor %}
+  </div>
+
+  {% if all_completed %}
+  <div class="completion-card">
+    <div class="card-header">ALL SEQUENCES DIGESTED</div>
+    <p style="color:var(--text-dim);margin-bottom:1.5rem;font-size:0.85rem;">The Fool's Gambit is complete. The final door stands open.</p>
+    <a href="/s0/fool" class="btn-fool">FACE THE FOOL</a>
+  </div>
+  {% elif current_seq and current_seq != 'S0' %}
+  <div class="current-challenge-card">
+    <div class="card-header">{{ current_seq }}: {{ current_name }}</div>
+    <div class="card-quote">"{{ acting_principle }}"</div>
+    <a href="{{ seq_urls[current_seq] }}" class="btn-begin">BEGIN ASCENSION</a>
+  </div>
+  {% else %}
+  <div class="current-challenge-card">
+    <div class="card-header">THE PATHWAY AWAITS</div>
+    <p style="color:var(--text-dim);margin-bottom:1.5rem;font-size:0.85rem;">Begin your ascent through the Sequences.</p>
+    <a href="/s9/seer" class="btn-begin">ENTER SEQUENCE 9</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

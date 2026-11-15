@@ -1,0 +1,12 @@
+![coverNaberius_Rhinedottir.jpg]({{FILE:coverNaberius_Rhinedottir.jpg}})
+
+Naberius menjaga sebuah kitab. Tiap halamannya disegel oleh halaman sebelumnya:
+salah satu huruf namamu, dan seluruh kitab tetap tertutup. Hanya penyihir yang
+benar-benar tahu siapa dirinya yang bisa membukanya.
+
+Temukan nama yang diterima kitab itu. Nama tersebut adalah flag.
+
+admin capek mikirin gimik genshin, intinya gitu deh. Naberius kalau g bercanda jadi apa? Serius... xixixi...
+ai g bener nih bikin caption, padahal naberius shade, malah mention witch, harusnya kan R... atau R juga akan muncul?...
+
+Download [naberius_attachment.zip]({{FILE:naberius_attachment.zip}}).

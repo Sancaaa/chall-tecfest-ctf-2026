@@ -1,0 +1,9 @@
+clue1
+ada yang ngasih 2 alamat lewat printf, buat apa tuh?
+
+clue2
+https://book.hacktricks.xyz/binary-exploitation/rop-return-oriented-programing/ret2lib/rop-leaking-libc-address
+
+---
+clue3
+Leak `puts()` + `./catflag`, hitung base libc, ROP `pop rdi;ret` -> `system("./catflag")`.

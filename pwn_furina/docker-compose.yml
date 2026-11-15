@@ -1,0 +1,16 @@
+services:
+  furina:
+    build: .
+    image: pwn_furina
+    restart: unless-stopped
+    ports:
+      - "${BIND_IP:-100.105.142.39}:40401:40401"
+    volumes:
+      - ./flag.txt:/home/furina_pwn/flag.txt:ro
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 100
+    mem_limit: 256m
+    cpus: 1.0

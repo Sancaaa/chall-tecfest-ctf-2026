@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All-in Or Nothing // Velvet Palace Room 777</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&family=Saira+Extra+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="bg-slashes" aria-hidden="true"></div>
+
+  <header class="hud-header">
+    <div class="brand-lockup">
+      <div class="brand-ribbon">VELVET PALACE // ROOM 777</div>
+      <h1 class="brand-title">ALL-IN OR NOTHING</h1>
+    </div>
+
+    <div class="hud-stats" aria-label="Status Permainan">
+      <div class="stat-pill">
+        <span class="stat-label">WIN STREAK</span>
+        <span class="stat-value" id="stat-streak">0 / 10</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-label">CHIPS</span>
+        <span class="stat-value stat-gold" id="stat-chips">$1,000</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-label">MENTAL DEALER</span>
+        <span class="stat-value stat-crimson" id="stat-composure">100%</span>
+      </div>
+    </div>
+
+    <div class="hud-actions">
+      <button type="button" class="btn-p5 btn-ghost" id="btn-open-dossier">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+        <span>TABLE DOSSIER</span>
+      </button>
+      <button type="button" class="btn-p5 btn-crimson" id="btn-open-confront">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+        </svg>
+        <span>HOLD UP!</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="arena">
+    <section class="dealer-panel" aria-label="Area Dealer">
+      <div class="dealer-stage">
+        <div class="dealer-portrait mood-smug" id="dealer-portrait" role="img" aria-label="Potret Dealer Reynaldi Pratama">
+          <svg viewBox="0 0 260 220" width="260" height="220" aria-hidden="true">
+            <polygon points="0,10 260,0 248,220 12,210" fill="#140407" stroke="#FAFAFA" stroke-width="4"/>
+            <polygon points="24,210 72,135 188,135 236,210" fill="#08080A" stroke="#FAFAFA" stroke-width="3"/>
+            <polygon points="104,135 156,135 130,192" fill="#FAFAFA"/>
+            <polygon points="122,138 138,138 133,196 127,196" fill="#E60012"/>
+            <circle cx="130" cy="86" r="42" fill="#F4EFEA" stroke="#08080A" stroke-width="4"/>
+            <path d="M86 78 C92 38, 168 38, 174 78 C164 56, 138 64, 128 54 C112 66, 98 58, 86 78 Z" fill="#08080A"/>
+            <g class="eyes-group">
+              <rect x="103" y="78" width="20" height="8" fill="#08080A"/>
+              <rect x="137" y="78" width="20" height="8" fill="#08080A"/>
+              <rect x="110" y="80" width="6" height="4" fill="#E60012"/>
+              <rect x="144" y="80" width="6" height="4" fill="#E60012"/>
+            </g>
+            <path class="dealer-mouth" d="M114 108 Q130 116 146 106" fill="none" stroke="#08080A" stroke-width="4" stroke-linecap="square"/>
+            <path class="sweat-drop" d="M164 62 Q172 74 164 80 Q156 74 164 62 Z" fill="#38BDF8"/>
+          </svg>
+        </div>
+
+        <div class="dealer-cards-box">
+          <div class="section-tag">DEALER HAND <span id="dealer-hand-rank" class="rank-chip"></span></div>
+          <div class="cards-row" id="dealer-cards"></div>
+        </div>
+      </div>
+
+      <div class="dialogue-box">
+        <div class="speaker-tag">REYNALDI // THE VELVET KING</div>
+        <p class="dialogue-text" id="dealer-line">Memuat meja Ruang 777...</p>
+      </div>
+    </section>
+
+    <section class="table-panel" aria-label="Meja Poker">
+      <div class="table-topbar">
+        <div class="street-badge" id="street-badge">READY</div>
+        <div class="pot-badge">POT: <span id="pot-amount">$0</span></div>
+        <div class="hands-count">HANDS: <span id="hands-count">0</span></div>
+      </div>
+
+      <div class="board-zone">
+        <div class="section-tag">COMMUNITY CARDS</div>
+        <div class="cards-row board-row" id="board-cards"></div>
+      </div>
+
+      <div class="player-zone">
+        <div class="player-cards-wrap">
+          <div class="section-tag">YOUR HAND <span id="player-hand-rank" class="rank-chip"></span></div>
+          <div class="cards-row" id="player-cards"></div>
+        </div>
+
+        <div class="result-banner hidden" id="result-banner"></div>
+      </div>
+
+      <div class="command-bar" aria-label="Aksi Poker">
+        <button type="button" class="btn-p5 btn-white" id="btn-deal">DEAL HAND</button>
+        <button type="button" class="btn-p5 btn-dark" id="btn-call" disabled>CHECK / CALL</button>
+        <button type="button" class="btn-p5 btn-crimson" id="btn-allin" disabled>ALL-IN!</button>
+        <button type="button" class="btn-p5 btn-muted" id="btn-fold" disabled>FOLD</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal: Table Dossier -->
+  <div class="modal-backdrop hidden" id="modal-dossier" role="dialog" aria-modal="true" aria-labelledby="dossier-title">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="dossier-title">TABLE DOSSIER // VIP ROOM 777</h2>
+        <button type="button" class="btn-close" id="btn-close-dossier" aria-label="Tutup Dossier">X</button>
+      </div>
+      <div class="modal-body dossier-grid">
+        <div class="dossier-col">
+          <h3>ATURAN "ALL-IN OR NOTHING"</h3>
+          <ul class="dossier-list">
+            <li>Varian: Simplified Heads-Up Texas Hold'em (2 hole cards + 5 community cards).</li>
+            <li>Menang <strong>10 ronde berturut-turut</strong> membuka brankas utama (Flag).</li>
+            <li>Kalah atau <em>Fold</em> mereset Win Streak ke <strong>0</strong>. Seri mempertahankan streak.</li>
+            <li>Jika chips habis, kasino memberi pinjaman darurat $1,000 otomatis di ronde baru.</li>
+          </ul>
+          <h3>CATATAN TRANSPARANSI MEJA</h3>
+          <p class="dossier-note">
+            Meja ini diawasi protokol standar Velvet Palace. Arsip operasional meja dikecualikan dari indeks mesin pencari, dan status resmi dealer melekat pada lencana VIP-nya.
+          </p>
+        </div>
+        <div class="dossier-col badge-preview">
+          <h3>LENCANA RESMI DEALER</h3>
+          <img src="/static/assets/dealer_badge.svg" alt="Lencana VIP Dealer Reynaldi Pratama" class="dealer-badge-img">
+          <p class="badge-caption">Asset: <code>/static/assets/dealer_badge.svg</code></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay: HOLD UP! Psychological Confrontation -->
+  <div class="modal-backdrop hidden" id="modal-confront" role="dialog" aria-modal="true" aria-labelledby="confront-title">
+    <div class="modal-card confront-card">
+      <div class="modal-head confront-head">
+        <div>
+          <div class="holdup-stamp">HOLD UP! // INTEROGASI PSIKOLOGIS</div>
+          <h2 id="confront-title">BABAK 1</h2>
+        </div>
+        <button type="button" class="btn-close" id="btn-close-confront" aria-label="Tutup Interogasi">KEMBALI KE MEJA</button>
+      </div>
+
+      <div class="confront-meters">
+        <div class="meter-block">
+          <div class="meter-label">DEALER MENTAL GUARD: <span id="confront-composure">100%</span></div>
+          <div class="meter-track">
+            <div class="meter-fill" id="confront-meter-fill" style="width: 100%"></div>
+          </div>
+        </div>
+        <div class="strike-block">
+          STRIKES: <span id="confront-strikes">0 / 3</span>
+        </div>
+      </div>
+
+      <div class="confront-quote-box">
+        <div class="speaker-tag">REYNALDI</div>
+        <p id="confront-dealer-prompt"></p>
+      </div>
+
+      <div id="confront-feedback" class="confront-feedback hidden" role="status"></div>
+
+      <form id="confront-form" class="confront-form">
+        <fieldset class="tactics-fieldset">
+          <legend>1. PILIH TAKTIK PSIKOLOGIS</legend>
+          <div id="tactics-list" class="tactics-list"></div>
+        </fieldset>
+
+        <div class="evidence-group">
+          <label for="evidence-input">2. TUNJUKKAN KODE BUKTI INVESTIGASI</label>
+          <div class="evidence-row">
+            <input type="text" id="evidence-input" name="evidence" autocomplete="off" placeholder="Masukkan kode bukti (contoh: XXXX-000)" required>
+            <button type="submit" class="btn-p5 btn-crimson" id="btn-submit-confront">SERANG!</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Victory / Flag -->
+  <div class="modal-backdrop hidden" id="modal-victory" role="dialog" aria-modal="true" aria-labelledby="victory-title">
+    <div class="modal-card victory-card">
+      <div class="holdup-stamp">SHOW'S OVER // ALL-OUT VICTORY</div>
+      <h2 id="victory-title">DEALER MENYERAH!</h2>
+      <p class="victory-sub" id="victory-reason"></p>
+      <p class="victory-quote" id="victory-quote"></p>
+      <div class="flag-box">
+        <code id="flag-value">LOCKED</code>
+        <button type="button" class="btn-p5 btn-white" id="btn-copy-flag">COPY FLAG</button>
+      </div>
+      <div class="victory-footer">
+        <button type="button" class="btn-p5 btn-dark" id="btn-close-victory">TUTUP</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/game.js"></script>
+</body>
+</html>

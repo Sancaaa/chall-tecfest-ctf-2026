@@ -1,0 +1,9 @@
+Clue1
+Bukan stack overflow
+
+clue2
+Array itu apa?
+
+---
+clue3
+4 slot ujung array `court` itu jump table function pointer. Timpa salah satunya dengan alamat `win()`, panggil dari menu 2.

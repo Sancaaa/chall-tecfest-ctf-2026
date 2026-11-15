@@ -1,0 +1,2 @@
+Clue1
+Periksa panggilan VoIP di dalam file .pcap tersebut, lalu decode gambar yang dikirimkan lewat transmisi audio SSTV.

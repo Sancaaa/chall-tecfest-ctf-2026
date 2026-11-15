@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="vign" cx="0.5" cy="0.3" r="0.8">
+      <stop offset="0%" stop-color="#10103a" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#08080f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#vign)"/>
+
+  <!-- Large faded gears representing the "clockwork of Fate" -->
+  <g opacity="0.04" stroke="#c9a84c" stroke-width="1.5" fill="none">
+    <circle cx="1350" cy="180" r="160"/>
+    <circle cx="1350" cy="180" r="130" stroke-dasharray="8 6"/>
+    <circle cx="1350" cy="180" r="100" stroke-dasharray="5 5"/>
+    <g stroke-width="3">
+      <line x1="1350" y1="20" x2="1350" y2="0"/>
+      <line x1="1350" y1="340" x2="1350" y2="360"/>
+      <line x1="1190" y1="180" x2="1170" y2="180"/>
+      <line x1="1510" y1="180" x2="1530" y2="180"/>
+    </g>
+  </g>
+
+  <g opacity="0.03" stroke="#1a8b8b" stroke-width="1.5" fill="none">
+    <circle cx="150" cy="700" r="130"/>
+    <circle cx="150" cy="700" r="100" stroke-dasharray="6 5"/>
+  </g>
+
+  <g opacity="0.025" stroke="#8b1a1a" stroke-width="1" fill="none">
+    <circle cx="1450" cy="750" r="90"/>
+  </g>
+
+  <!-- Eye of the Fool watching from afar -->
+  <g opacity="0.03" transform="translate(800,150)">
+    <ellipse rx="60" ry="35" fill="none" stroke="#c9a84c" stroke-width="1"/>
+    <circle r="15" fill="#c9a84c"/>
+  </g>
+</svg>

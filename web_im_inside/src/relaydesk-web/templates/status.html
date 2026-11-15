@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Integration Status - RelayDesk{% endblock %}
+
+{% block content %}
+<section>
+  <h1>Cluster Integration Status</h1>
+  <p class="lead">
+    Current health metrics, deployment subnets, and active service aliases registered in the RelayDesk routing registry.
+  </p>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Registered Service Aliases</h2>
+      <span class="status-pill">
+        <span class="status-dot success"></span>
+        4 Services Monitored
+      </span>
+    </div>
+
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Service Alias</th>
+            <th>Service Function</th>
+            <th>Subnet Placement</th>
+            <th>Operational Health</th>
+            <th>Latency</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for svc in services %}
+          <tr>
+            <td>
+              <code>{{ svc.name }}</code>
+            </td>
+            <td>{{ svc.type }}</td>
+            <td>
+              {% if "Private" in svc.subnet %}
+                <span class="status-pill" style="color: var(--color-accent); border-color: var(--color-accent);">
+                  {{ svc.subnet }}
+                </span>
+              {% else %}
+                <span class="status-pill" style="color: var(--color-status-info);">
+                  {{ svc.subnet }}
+                </span>
+              {% endif %}
+            </td>
+            <td>
+              <span class="status-pill">
+                <span class="status-dot success"></span>
+                {{ svc.status }} ({{ svc.health }}%)
+              </span>
+            </td>
+            <td style="font-family: var(--font-mono); font-size: 0.85rem;">{{ svc.latency }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">Need to reach an internal service alias?</div>
+    <p>
+      Private microservices in the cluster are addressed using internal VPC domain conventions. Refer to the <a href="/help/networking">Networking Configuration Guide</a> for DNS resolution rules and port allocations.
+    </p>
+  </div>
+</section>
+{% endblock %}
+

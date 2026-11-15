@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}S9: Seer{% endblock %}
+{% block seq_id %}S9{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="/static/css/sequences/s9_seer.css">{% endblock %}
+
+{% block content %}
+<div class="sequence-page seer-theme">
+  <!-- Seer Observation: Machines consult /s9/seer/robots.txt before treading the path. -->
+  <a href="/" class="back-link">Back to Cabinet</a>
+
+  <div class="watching-eye">👁️</div>
+
+  <div class="sequence-header">
+    <img src="/static/img/seq_seer.svg" class="seq-emblem-img" alt="Seer emblem">
+    <div class="sequence-number">SEQUENCE 9</div>
+    <div class="sequence-name">SEER</div>
+  </div>
+
+  <div class="acting-principle">
+    <div class="principle-label">Acting Principle</div>
+    <div class="principle-quote">"Observe what others overlook."</div>
+    <div class="principle-pathway">Pathway of the Seer</div>
+  </div>
+
+  <div class="challenge-container">
+    <h3>The Path</h3>
+    <p>As a Seer, you can perceive hidden truths. Look beyond the visible page. Scrutinize every line, every header, every hidden corridor. The Pathway reveals itself only to those who truly observe.</p>
+
+    <p>Your tools are simple: the page source, the network tab, and the quiet corners where secrets hide.</p>
+
+    <div class="observation-log">
+      <div class="log-entry"><span class="key">Visible</span>: The Seer's page renders openly.</div>
+      <div class="log-entry"><span class="key">Hidden</span>: Not everything is rendered. Not everything is visible.</div>
+      <div class="log-entry"><span class="key">Clue</span>: Machines are told where not to look. Look there.</div>
+    </div>
+
+    <form class="solution-form" data-seq-id="S9">
+      <label for="answer">The Prophecy (potion token):</label>
+      <input type="text" id="answer" name="answer" placeholder="Enter the Seer's prophecy..." required>
+      <button type="submit">SUBMIT PROPHECY</button>
+    </form>
+
+    <div class="feedback"></div>
+  </div>
+
+  <div class="digestion-section">
+    <div class="digestion-label">POTION DIGESTION</div>
+    <div class="digestion-bar">
+      <div class="digestion-fill" style="width: 0%"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

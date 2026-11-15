@@ -1,0 +1,10 @@
+Nahida — Cryptography (Hard)
+
+Gateway internal PT Nahida membungkus lalu lintas karyawan ke layanan dalam.
+Kami berhasil menyadap sebagian lalu lintasnya (capture.pcap) dan mendapatkan
+source gateway-nya (server.py). Layanan `vault` menyimpan rahasia yang kami
+butuhkan — tetapi kami tidak punya kuncinya.
+
+  nc <HOST> 10501
+
+Lampiran: server.py, capture.pcap

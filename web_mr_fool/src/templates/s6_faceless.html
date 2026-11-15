@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}S6: Faceless{% endblock %}
+{% block seq_id %}S6{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="/static/css/sequences/s6_faceless.css">{% endblock %}
+
+{% block content %}
+<div class="sequence-page faceless-theme">
+  <a href="/" class="back-link">Back to Cabinet</a>
+
+  <div class="mirror-overlay"></div>
+  <div class="blurred-face">👤</div>
+
+  <div class="sequence-header">
+    <img src="/static/img/seq_faceless.svg" class="seq-emblem-img" alt="Faceless emblem">
+    <div class="sequence-number">SEQUENCE 6</div>
+    <div class="sequence-name">FACELESS</div>
+  </div>
+
+  <div class="acting-principle">
+    <div class="principle-label">Acting Principle</div>
+    <div class="principle-quote">"Become someone you are not."</div>
+    <div class="principle-pathway">Pathway of the Faceless</div>
+  </div>
+
+  <div class="challenge-container">
+    <h3>Identity Theft</h3>
+    <p>A Faceless wears another's face. The archive trusts a compact bearer token formatted as base64(payload).base64(signature). Begin as a guest, inspect your token structure, and become an administrator.</p>
+
+    <div class="auth-box">
+      <form id="login-form" onsubmit="loginUser(event)">
+        <label for="login-user">Username:</label>
+        <input type="text" id="login-user" value="guest" style="width:100%;">
+        <label for="login-pass">Password:</label>
+        <input type="password" id="login-pass" value="guest" style="width:100%;">
+        <button type="submit" style="margin-top:0.75rem;padding:0.6rem 1.5rem;font-family:var(--font-heading);font-size:0.8rem;border:1px solid var(--seq-accent);border-radius:var(--radius);background:rgba(168,168,168,0.08);color:var(--seq-accent);cursor:pointer;">LOGIN</button>
+      </form>
+      <div class="jwt-display">
+        <strong>Token:</strong> <span id="jwt-token">none</span>
+      </div>
+    </div>
+
+    <form id="admin-form" onsubmit="checkAdmin(event)" style="margin-top:1rem;">
+      <label for="admin-token">Bearer Token:</label>
+      <input type="text" id="admin-token" placeholder="Paste JWT here..." style="width:100%;">
+      <button type="submit" style="margin-top:0.5rem;padding:0.6rem 1.5rem;font-family:var(--font-heading);font-size:0.8rem;border:1px solid var(--gold-bright);border-radius:var(--radius);background:rgba(201,168,76,0.08);color:var(--gold-bright);cursor:pointer;">ACCESS ADMIN</button>
+    </form>
+    <div id="admin-output" style="margin-top:1rem;font-size:0.8rem;color:var(--text-dim);"></div>
+
+    <form class="solution-form" data-seq-id="S6" style="margin-top:1.5rem;">
+      <label for="answer">Potion Token:</label>
+      <input type="text" id="answer" name="answer" placeholder="Enter the Faceless potion token..." required>
+      <button type="submit">DIGEST POTION</button>
+    </form>
+
+    <div class="feedback"></div>
+  </div>
+
+  <div class="digestion-section">
+    <div class="digestion-label">POTION DIGESTION</div>
+    <div class="digestion-bar">
+      <div class="digestion-fill" style="width: 0%"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+async function loginUser(e) {
+  e.preventDefault();
+  const u = document.getElementById('login-user').value;
+  const p = document.getElementById('login-pass').value;
+  try {
+    const resp = await fetch('/s6/faceless/login', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({username: u, password: p})
+    });
+    const r = await resp.json();
+    if (r.token) document.getElementById('jwt-token').textContent = r.token;
+  } catch (err) {}
+}
+
+async function checkAdmin(e) {
+  e.preventDefault();
+  const token = document.getElementById('admin-token').value;
+  const out = document.getElementById('admin-output');
+  try {
+    const resp = await fetch('/s6/faceless/admin', {
+      headers: {'Authorization': 'Bearer ' + token}
+    });
+    const r = await resp.json();
+    out.textContent = JSON.stringify(r, null, 2);
+  } catch (err) {
+    out.textContent = 'Error: ' + err.message;
+  }
+}
+</script>
+{% endblock %}

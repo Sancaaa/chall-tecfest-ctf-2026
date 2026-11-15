@@ -1,0 +1,27 @@
+# istaroth
+
+(deskripsi peserta belum ditulis — placeholder, isi manual sebelum lomba. Wajib cantumkan versi glibc server: 2.35/Ubuntu 22.04, dan "64-bit, C, PIE on, NX on, canary off")
+
+## Remote
+
+Direct connection: `nc <host> 40601`
+
+## Attachment peserta
+
+Upload `dist/istaroth_attachment.zip` sebagai Files di CTFd. Isi **3 file**
+(revisi v2, dulu cuma binary saja): binary `istaroth` (di-strip), `libc.so.6`,
+`ld-linux-x86-64.so.2` — kedua file glibc WAJIB disertakan karena soal ini
+sekarang ret2libc (bukan ret2win), exploit bergantung ke offset
+puts/system/gadget yang spesifik ke versi glibc 2.35-0ubuntu3.18 yang dipin.
+`catflag` tidak disertakan (helper server-side saja, dieksekusi lewat
+`system("./catflag")`, peserta tidak perlu menjalankannya sendiri).
+Protections: PIE on, NX on, canary off. Peserta perlu `chmod +x istaroth
+ld-linux-x86-64.so.2` setelah unzip (exec bit tidak terbawa lewat zip
+Windows), lalu jalankan lokal dengan
+`./ld-linux-x86-64.so.2 --library-path . ./istaroth`.
+
+## Local run
+
+Run `bash deploy_pwn.sh istaroth` dari WSL (rebuild + extract + re-zip
+otomatis), lalu connect dengan `nc 127.0.0.1 40601`. Lihat `NOTES.md` untuk
+detail teknik v2 (ret2libc, bukan ret2win lagi) dan hasil test.

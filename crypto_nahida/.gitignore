@@ -1,0 +1,4 @@
+secrets/
+capture.pcap
+__pycache__/
+*.pyc

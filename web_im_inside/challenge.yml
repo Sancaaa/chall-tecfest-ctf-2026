@@ -1,0 +1,22 @@
+name: "I'm inside of inside of inside"
+author: "TecFest CTF Committee"
+description: |
+  Tim operasional sedang kesulitan memeriksa integrasi antar-layanan. Sebuah alat pengecek koneksi API disediakan agar pekerjaan mereka lebih mudah. Katanya, data internal tetap aman karena tidak bisa diakses dari luar. Ada catatan yang seharusnya tidak bisa kamu lihat. Bisakah kamu menemukannya?
+
+  {URL}
+
+type: "DynamicService"
+value: 500
+
+flags:
+  - "TecFest26{wh3n_yhH_b1s4_d1_d4l3m_h4t1_ny4_d14}"
+
+hints:
+  - "Saat melakukan tes koneksi, dari mana sebenarnya request tersebut dikirim?"
+  - "Status integrasi dan dokumentasi jaringan punya informasi yang saling melengkapi."
+  - "Masuk ke layanan internal saja belum cukup; perhatikan bagaimana autentikasinya memproses input."
+
+scripts:
+  start: cd src && docker compose -p {{ .slug }} up --build -d
+  stop: cd src && docker compose -p {{ .slug }} down --volumes
+

@@ -1,0 +1,8 @@
+Clue1
+Yang mana hayo yang aman buat nulis alamat balik?
+https://ir0nstone.gitbook.io/notes/types/stack/shellcode
+
+---
+clue2
+Encode XOR + decoder stub jmp/call/pop
+https://docs.pwntools.com/en/dev/encoders.html

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}The Fool{% endblock %}
+{% block seq_id %}S0{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="/static/css/sequences/s0_fool.css">{% endblock %}
+
+{% block content %}
+<div class="sequence-page fool-theme">
+  <div class="fool-card">
+    <img src="/static/img/seq_fool.svg" class="fool-emblem-img" alt="The Fool emblem">
+    <div class="fool-title">THE FOOL</div>
+    <div class="fool-subtitle">"Only when all masks are worn can the true face be seen."</div>
+
+    <div class="flag-reveal">
+      <div style="font-size:0.7rem;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:0.75rem;">FINAL FLAG</div>
+      <div class="flag-text" id="flag-text">{{ flag }}</div>
+      <button type="button" class="btn-copy" id="copy-flag-btn" onclick="copyFlag()" style="margin-top:0.75rem;padding:0.4rem 1rem;font-size:0.75rem;cursor:pointer;background:transparent;border:1px solid var(--gold);color:var(--gold);border-radius:var(--radius);">Copy Flag</button>
+    </div>
+
+    <div class="path-summary">
+      You have digested all five potions and completed the Fool's Gambit.
+      <div class="seq-list">
+        {% for seq_id, seq_name, seq_icon in sequences %}
+        <span class="seq-item">{{ seq_icon }} {{ seq_id }}</span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <a href="/" style="color:var(--text-dim);font-size:0.8rem;">Return to the Cabinet</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function copyFlag() {
+  const flagEl = document.getElementById('flag-text');
+  const btn = document.getElementById('copy-flag-btn');
+  if (flagEl && navigator.clipboard) {
+    navigator.clipboard.writeText(flagEl.innerText.trim()).then(() => {
+      btn.innerText = 'Copied!';
+      setTimeout(() => { btn.innerText = 'Copy Flag'; }, 2000);
+    });
+  }
+}
+</script>
+{% endblock %}

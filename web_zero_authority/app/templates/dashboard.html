@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Black Knights</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="frame wide">
+        <div class="panel">
+            <div class="top-nav">
+                <span>{{ username }}<span class="badge {{ 'zero' if role == 'zero' else '' }}">{{ role }}</span></span>
+                <span>
+                    <a href="{{ url_for('archives') }}">Arsip</a>
+                    <a href="{{ url_for('logout') }}">Keluar</a>
+                </span>
+            </div>
+
+            <div class="mark"></div>
+            <h1>Dashboard</h1>
+            <p class="subtitle">Jaringan Black Knights</p>
+
+            <p>Kamu terhubung ke terminal internal. Dokumen operasi dapat diakses melalui arsip, dengan beberapa catatan yang dibatasi untuk identitas tertentu.</p>
+
+            <a class="btn" href="{{ url_for('archives') }}">Buka Arsip</a>
+        </div>
+    </div>
+</body>
+</html>

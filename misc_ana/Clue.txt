@@ -1,0 +1,12 @@
+Clue1
+Flag all capslock. jika terdapat 2 kata atau lebih, pisahkan dengan "_". 
+
+clue2
+Sejarah
+
+---
+clue3
+https://genshin-impact.fandom.com/wiki/Ancient_Teyvat_Script
+
+clue4
+https://www.youtube.com/@Ashikai
