@@ -1,0 +1,23 @@
+services:
+  nativenote:
+    build: ./src
+    container_name: tecfest-web-nativenote
+    ports:
+      - "${BIND_IP:-100.105.142.39}:50501:8080"
+    environment:
+      - RSCTF_FLAG=TecFest26{pr0t0_p0llut10n_m33ts_ut1l_1nsp3ct_rc3}
+    restart: unless-stopped
+    cap_drop:
+      - ALL
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - seccomp=unconfined
+    pids_limit: 512
+    mem_limit: 1024m
+    cpus: 1.5
+    healthcheck:
+      test: ["CMD-SHELL", "timeout 3 bash -c '</dev/tcp/127.0.0.1/8080' || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
