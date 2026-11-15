@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Cari Tiket — PT. Scarameow Logistics{% endblock %}
+{% block content %}
+
+<div class="container narrow">
+  <h1>Pelacakan Tiket</h1>
+  <p class="text-muted">Masukkan kode tiket atau kata kunci untuk mencari tiket support.</p>
+
+  <form method="GET" class="search-form">
+    <div class="search-bar">
+      <input type="text" name="q" placeholder="cth: SCM-1042 atau migrasi" value="{{ query or '' }}" autofocus>
+      <button type="submit" class="btn btn-primary">Cari</button>
+    </div>
+  </form>
+
+  {% if query %}
+    <div class="search-info">
+      <p>Hasil untuk: <strong>{{ query }}</strong> ({{ results|length }} tiket ditemukan)</p>
+    </div>
+
+    {% if results %}
+      <div class="ticket-list">
+        {% for t in results %}
+          <div class="ticket-card">
+            <div class="ticket-header">
+              <span class="ticket-code">{{ t.ticket_code }}</span>
+              <span class="ticket-status status-{{ t.status }}">{{ t.status }}</span>
+            </div>
+            <h3>{{ t.title }}</h3>
+            <p class="ticket-desc">{{ t.description }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <p>Tidak ada tiket yang cocok dengan pencarian "<strong>{{ query }}</strong>".</p>
+      </div>
+    {% endif %}
+  {% endif %}
+
+  <!--
+    DEV NOTE:
+    Query di /search masih pakai:
+      SELECT ticket_code, title, status FROM tickets WHERE title LIKE '%{q}%'
+    Belum di-parameterized. Tiket #SCM-1105.
+    Kolom yang di-return: ticket_code, title, status (3 kolom).
+    Kalau mau UNION, sesuaikan jumlah kolomnya.
+  -->
+</div>
+
+{% endblock %}

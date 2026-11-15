@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}500 — PT. Scarameow Logistics{% endblock %}
+{% block content %}
+
+<div class="error-container">
+  <div class="error-code">500</div>
+  <h1>Internal Server Error</h1>
+  <p>Terjadi kesalahan pada server. Tim IT telah diberitahu.</p>
+
+  {% if debug_info %}
+    <div class="debug-panel">
+      <h3>Debug Information</h3>
+      <pre>{{ debug_info }}</pre>
+      <p class="debug-hint">
+        Untuk info lebih lanjut, akses <a href="/api/v1/debug">/api/v1/debug</a>
+      </p>
+    </div>
+  {% endif %}
+
+  <p class="error-meta">Error ID: {{ error_id or 'N/A' }}</p>
+</div>
+
+{% endblock %}

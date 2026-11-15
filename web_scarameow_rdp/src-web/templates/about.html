@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}About — PT. Scarameow Logistics{% endblock %}
+{% block content %}
+
+<div class="container narrow">
+  <h1>Tentang Kami</h1>
+  <p class="lead">PT. Scarameow Logistics adalah perusahaan logistik yang berbasis di Denpasar, Bali. Berdiri sejak 2018, kami fokus pada pengiriman cepat, aman, dan terpercaya.</p>
+
+  <h2>Tim IT Internal</h2>
+  <ul>
+    <li><strong>admin</strong> — System Administrator (admin@scarameow.id)</li>
+    <li><strong>rahade</strong> — Operations (rahade1029@scarameow.id)</li>
+    <li><strong>scarameow</strong> — LLM &amp; AI Systems</li>
+  </ul>
+
+
+  <h2>Infrastruktur</h2>
+  <table class="info-table">
+    <tr><td>Web Server</td><td>Flask 3.0.3 (Python 3.11)</td></tr>
+    <tr><td>Database</td><td><strong>SQLite 3.40</strong></td></tr>
+    <tr><td>OS</td><td>Ubuntu 22.04 LTS</td></tr>
+    <tr><td>Reverse Proxy</td><td>Caddy 2.7</td></tr>
+    <tr><td>Tunnel</td><td>Cloudflare Tunnel</td></tr>
+    <tr><td>Remote Desktop</td><td>xrdp 0.9.21 (XFCE 4.18)</td></tr>
+  </table>
+
+  <h2>Changelog</h2>
+  <div class="changelog">
+    <div class="changelog-item">
+      <span class="version">v2.5.0</span>
+      <span class="date">2026-02-14</span>
+      <p>Menambahkan fitur <code>/search</code> untuk pelacakan tiket. Parameter <code>q</code> masih dalam review.</p>
+    </div>
+    <div class="changelog-item">
+      <span class="version">v2.4.1</span>
+      <span class="date">2026-02-10</span>
+      <p>Patch minor: update dependency, perbaikan tampilan dashboard.</p>
+    </div>
+    <div class="changelog-item">
+      <span class="version">v2.4.0</span>
+      <span class="date">2026-01-28</span>
+      <p>Menambahkan endpoint <code>/api/v1/status</code> untuk monitoring internal. Butuh Bearer token.</p>
+    </div>
+    <div class="changelog-item">
+      <span class="version">v2.3.5</span>
+      <span class="date">2025-12-15</span>
+      <p>Migrasi dari MySQL ke SQLite. Beberapa query belum di-refactor.</p>
+    </div>
+  </div>
+
+  <!--
+    TODO: tiket #SCM-1042 — query di /login masih pakai string concat.
+    TODO: tiket #SCM-1105 — parameter q di /search belum di-sanitize.
+    TODO: tiket #SCM-1106 — /api/v1/ticket masih pakai concat juga.
+    Semua ini harusnya sudah selesai sebelum audit berikutnya.
+  -->
+</div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+Ganti dua return gagal login di app.py agar kembali ke halaman SCARAMEOW:
+
+1) Pada exception sqlite:
+return render_template("index.html", error="Terjadi kesalahan pada query database.")
+
+2) Pada username/password salah:
+return render_template("index.html", error="Username atau password salah.")
+
+Login berhasil tetap sama: redirect(url_for("dashboard"))

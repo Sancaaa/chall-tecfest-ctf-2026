@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Detail Tiket — PT. Scarameow Logistics{% endblock %}
+{% block content %}
+
+<div class="container narrow">
+  {% if ticket %}
+    <div class="ticket-detail">
+      <div class="ticket-header">
+        <span class="ticket-code">{{ ticket.ticket_code }}</span>
+        <span class="ticket-status status-{{ ticket.status }}">{{ ticket.status }}</span>
+      </div>
+      <h1>{{ ticket.title }}</h1>
+      <p class="ticket-desc">{{ ticket.description }}</p>
+      <div class="ticket-meta">
+        <p><strong>Assigned to:</strong> user_id {{ ticket.assigned_to }}</p>
+      </div>
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p>Tiket tidak ditemukan.</p>
+    </div>
+  {% endif %}
+
+  <!--
+    DEV NOTE:
+    Query di /api/v1/ticket masih pakai:
+      SELECT ticket_code, title, description, status FROM tickets WHERE id = {id}
+    Belum di-parameterized. Tiket #SCM-1106.
+    Parameter id numeric — coba test dengan 1 AND 1=1 vs 1 AND 1=2.
+  -->
+</div>
+
+{% endblock %}

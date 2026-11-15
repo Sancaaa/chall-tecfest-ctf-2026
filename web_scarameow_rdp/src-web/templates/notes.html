@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Internal Notes — PT. Scarameow Logistics{% endblock %}
+{% block content %}
+
+<div class="container narrow">
+  <h1>Internal Notes</h1>
+  <p class="text-muted">Catatan internal tim IT. Jangan dibagikan ke luar.</p>
+
+  {% for n in notes %}
+    <div class="note-card">
+      <div class="note-author">{{ n.author }}</div>
+      <div class="note-content">{{ n.content }}</div>
+      <div class="note-meta">— {{ n.created_at or 'baru saja' }}</div>
+    </div>
+  {% endfor %}
+
+  <!--
+    Notes ini di-seed dari init_db(). Isinya:
+    - Reminder untuk ganti password RDP setelah migrasi
+    - Info bahwa credential RDP ada di /api/v1/status (butuh token)
+    - Hint bahwa token ada di tabel api_tokens
+  -->
+</div>
+
+{% endblock %}

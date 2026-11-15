@@ -1,0 +1,26 @@
+services:
+  web:
+    build: ./src-web
+    container_name: tecfest-web-scarameow-web
+    ports:
+      - "${BIND_IP:-100.105.142.39}:50601:5000"
+    mem_limit: 400m
+    cpus: 0.5
+    restart: unless-stopped
+    networks:
+      - scarameow-net
+
+  rdp:
+    build: ./src-rdp
+    container_name: tecfest-web-scarameow-rdp
+    ports:
+      - "${BIND_IP:-100.105.142.39}:50602:3389"
+    mem_limit: 1g
+    cpus: 1.0
+    restart: unless-stopped
+    networks:
+      - scarameow-net
+
+networks:
+  scarameow-net:
+    driver: bridge

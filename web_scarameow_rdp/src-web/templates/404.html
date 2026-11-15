@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}404 — PT. Scarameow Logistics{% endblock %}
+{% block content %}
+
+<div class="error-container">
+  <div class="error-code">404</div>
+  <h1>Halaman Tidak Ditemukan</h1>
+  <p>Halaman yang Anda cari tidak tersedia.</p>
+
+  <div class="error-hints">
+    <p>Mungkin Anda mencari:</p>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/login">Staff Login</a></li>
+      <li><a href="/search">Cari Tiket</a></li>
+      <li><a href="/about">About</a></li>
+    </ul>
+  </div>
+
+  <p class="error-meta">Request ID: {{ request_id or 'N/A' }}</p>
+</div>
+
+<!--
+  DEBUG: cek /robots.txt untuk daftar path yang di-disallow.
+  Path menarik: /backup/, /api/, /notes
+-->
+{% endblock %}
